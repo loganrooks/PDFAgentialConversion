@@ -1,0 +1,240 @@
+{
+  "name": "why-ethics-retrieval-benchmark",
+  "cases": [
+    {
+      "id": "intro-response-responsibility",
+      "expected_doc_ids": [
+        "body/introduction/a-the-response-in-responsibility.md"
+      ],
+      "tags": ["structural"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "response in responsibility",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "conceptual",
+          "query": "how response belongs to responsibility",
+          "tags": ["paraphrase"]
+        }
+      ]
+    },
+    {
+      "id": "why-read-recitation",
+      "expected_doc_ids": [
+        "body/part-01-attending-the-future/chapter-04-why-read/c-re-citation.md"
+      ],
+      "tags": ["structural", "paraphrase"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "re citation derrida why read",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "structural",
+          "query": "chapter 4 why read re citation",
+          "tags": ["filename-sensitive"]
+        },
+        {
+          "id": "conceptual",
+          "query": "repetition and citation in derrida reading levinas",
+          "tags": ["semantic"]
+        }
+      ]
+    },
+    {
+      "id": "hidden-thread",
+      "expected_doc_ids": [
+        "body/part-01-attending-the-future/chapter-04-why-read/a-the-hidden-thread.md"
+      ],
+      "tags": ["paraphrase"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "hidden thread reading text textile derrida",
+          "tags": ["semantic"]
+        },
+        {
+          "id": "structural",
+          "query": "why read hidden thread",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    },
+    {
+      "id": "closure-of-philosophy",
+      "expected_doc_ids": [
+        "body/part-01-attending-the-future/chapter-04-why-read/b-closure-of-philosophy.md"
+      ],
+      "tags": ["paraphrase"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "closure of philosophy levinas derrida reading tradition",
+          "tags": ["semantic"]
+        },
+        {
+          "id": "structural",
+          "query": "why read closure of philosophy",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    },
+    {
+      "id": "commentary-written-command",
+      "expected_doc_ids": [
+        "body/part-01-attending-the-future/chapter-05-why-comment/a-the-written-command.md"
+      ],
+      "tags": ["structural"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "written command commentary levinas beyond the verse",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "structural",
+          "query": "chapter 5 why comment written command",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    },
+    {
+      "id": "third-and-justice",
+      "expected_doc_ids": [
+        "body/part-02-present-judgments/chapter-01-why-reason/a-the-third-and-justice.md"
+      ],
+      "tags": ["structural"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "the third and justice",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "conceptual",
+          "query": "relation between the third and justice",
+          "tags": ["paraphrase"]
+        }
+      ]
+    },
+    {
+      "id": "judgment-day",
+      "expected_doc_ids": [
+        "body/part-02-present-judgments/chapter-03-why-judge/d-judgment-day.md",
+        "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"
+      ],
+      "tags": ["adversarial", "multi-target"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "judgment day unjust judgment universality outside",
+          "tags": ["semantic"]
+        },
+        {
+          "id": "structural",
+          "query": "why judge judgment day unjust judgment",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    },
+    {
+      "id": "pragmatic-social-logics-table",
+      "expected_doc_ids": [
+        "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"
+      ],
+      "tags": ["table", "adversarial"],
+      "probes": [
+        {
+          "id": "table-lexical",
+          "query": "pragmatic social logics table representation cooperation totalization subordination",
+          "tags": ["table-lexical"]
+        },
+        {
+          "id": "table-conceptual",
+          "query": "social logics of cooperation totalization and subordination",
+          "tags": ["semantic"]
+        }
+      ]
+    },
+    {
+      "id": "pragmaticism",
+      "expected_doc_ids": [
+        "body/part-03-pragmatism-pragmatics-and-method/chapter-01-why-verify/c-pragmatism-and-pragmaticism.md"
+      ],
+      "tags": ["structural"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "pragmatism and pragmaticism",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "structural",
+          "query": "why verify pragmatism and pragmaticism",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    },
+    {
+      "id": "indeclinable-accusative",
+      "expected_doc_ids": [
+        "body/part-03-pragmatism-pragmatics-and-method/chapter-03-why-me/c-the-indeclinable-accusative-me.md"
+      ],
+      "tags": ["filename-sensitive"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "indeclinable accusative me",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "structural",
+          "query": "why me indeclinable accusative me",
+          "tags": ["structural"]
+        }
+      ]
+    },
+    {
+      "id": "great-is-repentance",
+      "expected_doc_ids": [
+        "body/part-04-repenting-history/chapter-01-why-repent/b-great-is-repentance.md",
+        "body/part-04-repenting-history/chapter-01-why-repent/c-social-repentance.md"
+      ],
+      "tags": ["multi-target"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "great is repentance social repentance",
+          "tags": ["title-match"]
+        },
+        {
+          "id": "conceptual",
+          "query": "repentance and social repentance",
+          "tags": ["semantic"]
+        }
+      ]
+    },
+    {
+      "id": "historiography",
+      "expected_doc_ids": [
+        "body/part-04-repenting-history/chapter-04-why-remember/b-historiography.md"
+      ],
+      "tags": ["paraphrase"],
+      "probes": [
+        {
+          "id": "titleish",
+          "query": "historical index benjamin historiography",
+          "tags": ["semantic"]
+        },
+        {
+          "id": "structural",
+          "query": "why remember historiography",
+          "tags": ["filename-sensitive"]
+        }
+      ]
+    }
+  ]
+}

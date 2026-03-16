@@ -1,0 +1,27 @@
+{
+  "name": "root-pdf-challenge-corpus",
+  "description": "Out-of-sample PDF books used to test whether the converter generalizes beyond why-ethics.",
+  "entries": [
+    {
+      "id": "of-grammatology",
+      "label": "Of Grammatology",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Derrida_OfGrammatology.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/of-grammatology",
+      "book_id": "derrida-of-grammatology"
+    },
+    {
+      "id": "specters-of-marx",
+      "label": "Specters of Marx",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Derrida_SpectersOfMarx.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/specters-of-marx",
+      "book_id": "derrida-specters-of-marx"
+    },
+    {
+      "id": "otherwise-than-being",
+      "label": "Otherwise than Being",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Levinas_OtherwiseThanBeing.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/otherwise-than-being",
+      "book_id": "levinas-otherwise-than-being"
+    }
+  ]
+}

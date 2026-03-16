@@ -1,0 +1,38 @@
+{
+  "bundle_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/why-ethics",
+  "issue_count": 22,
+  "issue_summary": {
+    "repeated_adjacent_word": 4,
+    "rag_block_lowercase_start": 7,
+    "rag_block_hyphen_end": 7,
+    "rag_block_dangling_end": 3,
+    "boundary_page_many_micro_regions": 1
+  },
+  "issue_codes": [
+    "boundary_page_many_micro_regions",
+    "rag_block_dangling_end",
+    "rag_block_hyphen_end",
+    "rag_block_lowercase_start",
+    "repeated_adjacent_word"
+  ],
+  "classification": {
+    "counts_by_group": {
+      "target_scopes": {},
+      "holdout_scopes": {
+        "rag_block_lowercase_start": 1
+      },
+      "negative_controls": {},
+      "other": {
+        "repeated_adjacent_word": 4,
+        "rag_block_lowercase_start": 6,
+        "rag_block_hyphen_end": 7,
+        "rag_block_dangling_end": 3,
+        "boundary_page_many_micro_regions": 1
+      }
+    },
+    "issue_count_by_group": {
+      "other": 21,
+      "holdout_scopes": 1
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "mode": "interactive",
+  "depth": "thorough",
+  "git_tracking": "atomic",
+  "model_profile": "quality",
+  "research": false,
+  "plan_checker": true,
+  "verifier": true,
+  "gsd_reflect_version": "1.16.0",
+  "devops": {
+    "ci": false,
+    "docker": false,
+    "deployment": false,
+    "notes": "Local-first milestone. Stable local commands come before hosted CI or deployment automation."
+  },
+  "milestone": {
+    "id": "01",
+    "name": "Foundation, Visibility, and Gate Recovery"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "cases": [
+    {
+      "id": "of-grammatology",
+      "layout_pages": [
+        "Of Grammatology",
+        "of\nGranunatology\nBY Jacques Derrida Corrected Edition\nTranslated by Gayatri Chakravorty Spivak\nThe Johns Hopkins University Press Baltimore and London",
+        "Copyright \u00a9 1974, 1976, 1997 by The Johns Hopkins University Press\nFirst American edition, 1976 Originally published in France under the title De la Grammatologie\nJohns Hopkins Paperbacks edition, 1976 Corrected edition, 1997\nLibrary of Congress Cataloging-in-Publication Data\nDerrida, Jacques.\nOf grammatology. Translation of De la grammatologie.\nIncludes bibliographical references.\n1. Languages-Philosophy.\nI. Title\nISBN 0-8018-1841-9 (hardcover)\nISBN 0-8018-1879-6 (paperback)\nISBN 0-8018-5830-5 (corrected edition)"
+      ],
+      "expected": {
+        "title": "Of Grammatology",
+        "authors": [
+          "Jacques Derrida"
+        ],
+        "contributors": [
+          {
+            "name": "Gayatri Chakravorty Spivak",
+            "role": "translator"
+          }
+        ],
+        "publisher": "The Johns Hopkins University Press",
+        "publication_year": 1997
+      }
+    },
+    {
+      "id": "specters-of-marx",
+      "layout_pages": [
+        "Specters of Marx",
+        "Jacques Derrida\nSpecters of Marx\nThe State of the Debt, the Work of Mourning and\n the New International\nTranslated from the French by Peggy Kamuf\nWith an introduction by Bernd Magnus and\nStephen Cullenberg\nNew York and London",
+        "Originally published in French as Spectres de Marx,\n\u00a9 Editions Galile\u00e9, 1993\nFirst published in English in 1994 by Routledge\nFirst published in Routledge Classics 2006\nby Routledge 11 Third Avenue, New York, NY 10017\nSimultaneously published in the UK by Routledge\n2 Park Square, Milton Park, Abingdon, Oxon OX14 4RN\nLibrary of Congress Cataloging in Publication Data\nA catalog record for this book has been requested\nISBN10: 0-415-38957-7\nISBN13: 978-0-415-38957-0"
+      ],
+      "expected": {
+        "title": "Specters of Marx",
+        "authors": [
+          "Jacques Derrida"
+        ],
+        "contributors": [
+          {
+            "name": "Peggy Kamuf",
+            "role": "translator"
+          },
+          {
+            "name": "Bernd Magnus",
+            "role": "introduction"
+          },
+          {
+            "name": "Stephen Cullenberg",
+            "role": "introduction"
+          }
+        ],
+        "publisher": "Routledge",
+        "publication_year": 2006
+      }
+    },
+    {
+      "id": "otherwise-than-being",
+      "layout_pages": [
+        "OTHERWISE THAN BEING OR BEYOND ESSENCE",
+        "OTHERWISE\nTHAN BEING\nOR BEYOND ESSENCE\nEMMANUEL LEVINAS\nTRANSLATED BY ALPHONSO LINGIS\nDUQUESNE UNIVERSITY PRESS\nPITTSBURGH, PENNSYLVANIA",
+        "Library of Congress Cataloging in Publication Data\nL\u00e9vinas, Emmanuel.\n[Autrement qu'\u00eatre. English]\nOtherwise than being, or, Beyond essence / Emmanuel L\u00e9vinas\ntranslated by Alphonso Lingis.\nOriginally published: Dordrecht, Netherlands : M. Nijhoff, 1974,\nin series: Martinus Nijhoff philosophy texts.\nIncludes index.\nISBN 0-8207-0299-4 (pbk. : alk. paper)\n1. Ontology. 2. Essence (Philosophy). Title.\nB2430.L483A8313 1998\n111-dc21 98-19597\nPublished by DUQUESNE UNIVERSITY PRESS\n600 Forbes Avenue\nPittsburgh, Pennsylvania 15282\nFirst paperback edition printing, 1998\nCopyright \u00a9 1981, 1997 Kluwer Academic Publishers B.V."
+      ],
+      "expected": {
+        "title": "Otherwise Than Being or Beyond Essence",
+        "authors": [
+          "Emmanuel L\u00e9vinas"
+        ],
+        "contributors": [
+          {
+            "name": "Alphonso Lingis",
+            "role": "translator"
+          }
+        ],
+        "publisher": "Duquesne University Press",
+        "publication_year": 1998
+      },
+      "must_not_match_author_catalog_entry": "Pittsburgh, Pennsylvania 15282"
+    }
+  ]
+}
+

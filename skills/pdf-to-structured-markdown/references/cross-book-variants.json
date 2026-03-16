@@ -1,0 +1,84 @@
+{
+  "variants": [
+    {
+      "id": "selected",
+      "label": "Selected Hybrid",
+      "description": "Phase 05 winner: hybrid boundary slicing, balanced prose joins, and reclassify-first micro-region handling.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "hybrid",
+        "PDFMD_PROSE_JOIN_MODE": "balanced",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "balanced",
+      "label": "Balanced",
+      "description": "Historical baseline: balanced boundary slicing, balanced prose joins, reclassify-first micro-region handling.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "balanced",
+        "PDFMD_PROSE_JOIN_MODE": "balanced",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "boundary-conservative",
+      "label": "Boundary Conservative",
+      "description": "Exact heading slicing only, with balanced prose joins and reclassify-first micro-region handling.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "conservative",
+        "PDFMD_PROSE_JOIN_MODE": "balanced",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "boundary-aggressive",
+      "label": "Boundary Aggressive",
+      "description": "Balanced prose joins plus aggressive first-page heading slicing with inline-title tail preservation and short-prelude trimming.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "aggressive",
+        "PDFMD_PROSE_JOIN_MODE": "balanced",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "prose-conservative",
+      "label": "Prose Conservative",
+      "description": "Balanced boundary slicing with stricter region-join tolerances.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "balanced",
+        "PDFMD_PROSE_JOIN_MODE": "conservative",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "prose-aggressive",
+      "label": "Prose Aggressive",
+      "description": "Balanced boundary slicing with looser prose-continuation tolerances.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "balanced",
+        "PDFMD_PROSE_JOIN_MODE": "aggressive",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    },
+    {
+      "id": "group-first",
+      "label": "Group First",
+      "description": "Balanced boundary and prose behavior, but group short micro-regions before prose/index reclassification.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "balanced",
+        "PDFMD_PROSE_JOIN_MODE": "balanced",
+        "PDFMD_MICRO_REGION_MODE": "group_first"
+      }
+    },
+    {
+      "id": "boundary-aggressive-prose-aggressive",
+      "label": "Boundary + Prose Aggressive",
+      "description": "Combined aggressive boundary slicing and aggressive prose-continuation repair.",
+      "env": {
+        "PDFMD_BOUNDARY_OVERLAP_MODE": "aggressive",
+        "PDFMD_PROSE_JOIN_MODE": "aggressive",
+        "PDFMD_MICRO_REGION_MODE": "reclassify_first"
+      }
+    }
+  ]
+}

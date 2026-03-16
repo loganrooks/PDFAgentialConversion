@@ -1,0 +1,69 @@
+{
+  "bundle_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/why-ethics",
+  "benchmark": "why-ethics-retrieval-benchmark",
+  "reference_corpus": "rag_linearized",
+  "representation_summary_by_run": {
+    "rag_linearized::body": {
+      "mean_twin_cosine": 1.0,
+      "twin_hit_at_1": 1.0,
+      "twin_mean_reciprocal_rank": 1.0
+    },
+    "rag_linearized::contextual": {
+      "mean_twin_cosine": 1.0,
+      "twin_hit_at_1": 1.0,
+      "twin_mean_reciprocal_rank": 1.0
+    },
+    "semantic_flat_clean::body": {
+      "mean_twin_cosine": 0.9905,
+      "twin_hit_at_1": 1.0,
+      "twin_mean_reciprocal_rank": 1.0
+    },
+    "semantic_flat_clean::contextual": {
+      "mean_twin_cosine": 0.9659,
+      "twin_hit_at_1": 0.9855,
+      "twin_mean_reciprocal_rank": 0.9928
+    },
+    "spatial_main_plus_supplement::body": {
+      "mean_twin_cosine": 0.9871,
+      "twin_hit_at_1": 1.0,
+      "twin_mean_reciprocal_rank": 1.0
+    },
+    "spatial_main_plus_supplement::contextual": {
+      "mean_twin_cosine": 0.956,
+      "twin_hit_at_1": 0.8696,
+      "twin_mean_reciprocal_rank": 0.9155
+    }
+  },
+  "retrieval_summary_by_run": {
+    "rag_linearized::body": {
+      "mean_reciprocal_rank": 0.1736,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.08
+    },
+    "rag_linearized::contextual": {
+      "mean_reciprocal_rank": 0.1306,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.06
+    },
+    "semantic_flat_clean::body": {
+      "mean_reciprocal_rank": 0.1812,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.12
+    },
+    "semantic_flat_clean::contextual": {
+      "mean_reciprocal_rank": 0.1375,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.08
+    },
+    "spatial_main_plus_supplement::body": {
+      "mean_reciprocal_rank": 0.1233,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.04
+    },
+    "spatial_main_plus_supplement::contextual": {
+      "mean_reciprocal_rank": 0.0866,
+      "hit_at_1": 0.0,
+      "recall_at_3": 0.04
+    }
+  }
+}

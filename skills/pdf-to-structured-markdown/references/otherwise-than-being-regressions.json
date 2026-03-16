@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "path": "body/part-02-the-exposition/chapter-03-3-time-and-discourse/b-language.md",
+      "must_contain": [
+        "# b. Language",
+        "Source pages: 34-37 (PDF 78-81)."
+      ],
+      "must_not_contain": [
+        "# CHAPTER"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-03-3-time-and-discourse__section-b-language__pp-34-37.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 1,
+        "block": "Commentary"
+      },
+      "must_match": [
+        "^The verb understood as a noun designating an event"
+      ],
+      "must_not_contain": [
+        "b. Language"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-05-sensibility-and-cognition__section-a-proximity-and-space__pp-81-83.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 1,
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "implication of the approaching one in fraternity"
+      ],
+      "must_not_contain": [
+        "an implica-"
+      ]
+    },
+    {
+      "path": "body/part-02-the-exposition/chapter-05-sensibility-and-cognition/a-proximity-and-space.md",
+      "must_contain": [
+        "# a. Proximity and Space",
+        "Source pages: 81-83 (PDF 123-125)."
+      ],
+      "must_not_contain": [
+        "# . ."
+      ]
+    },
+    {
+      "path": "spatial/body/part-03-in-other-words/chapter-01-notes/index.layout.json",
+      "scope": {
+        "kind": "spatial_page",
+        "page_label": "187",
+        "pdf_page": 225
+      },
+      "must_contain": [
+        "\"content_mode\": \"index\""
+      ]
+    }
+  ]
+}

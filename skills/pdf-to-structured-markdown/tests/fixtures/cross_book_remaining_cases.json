@@ -1,0 +1,177 @@
+{
+  "of_grammatology": {
+    "audit_summary": {
+      "status": "warn",
+      "issue_count": 1,
+      "issue_codes": [
+        "overlapping_leaf_ranges"
+      ]
+    },
+    "structural_issues": [
+      {
+        "code": "overlapping_leaf_ranges",
+        "kind": "boundary",
+        "left_path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-initial-debate-and-the-composition-of-the-essay.md",
+        "right_path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-interval-and-the-supplement.md",
+        "left_range": {
+          "pdf_page_start": 276,
+          "pdf_page_end": 279
+        },
+        "right_range": {
+          "pdf_page_start": 279,
+          "pdf_page_end": 283
+        },
+        "expected_overlap_kind": "boundary"
+      }
+    ],
+    "probe_issue_summary": {
+      "rag_block_lowercase_start": 26,
+      "rag_block_dangling_end": 5,
+      "rag_block_hyphen_end": 1,
+      "repeated_adjacent_word": 2
+    },
+    "probe_cases": [
+      {
+        "code": "rag_block_lowercase_start",
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/derrida-of-grammatology__part-01-writing-before-the-letter__chapter-01-1-the-end-of-the-book-and-the-beginning-of-writing__section-the-signifier-and-truth.md::{\"block\": \"Commentary\", \"index\": 3, \"kind\": \"rag_passage\"}",
+        "path": "rag/leaf-nodes/derrida-of-grammatology__part-01-writing-before-the-letter__chapter-01-1-the-end-of-the-book-and-the-beginning-of-writing__section-the-signifier-and-truth.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 3,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "snippet": "theme of God's book (nature or law, indeed natural law) through all its modifica tions. Rabbi Eliezer said: \"If all the seas were of ink, and all ponds planted with reeds, if the s"
+      },
+      {
+        "code": "rag_block_dangling_end",
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/derrida-of-grammatology__part-02-nature-culture-writing__chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages__section-the-interval-and-the-supplement__pp-195-199.md::{\"block\": \"Commentary\", \"index\": 3, \"kind\": \"rag_passage\"}::tail=from which",
+        "path": "rag/leaf-nodes/derrida-of-grammatology__part-02-nature-culture-writing__chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages__section-the-interval-and-the-supplement__pp-195-199.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 3,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "tail": "from which",
+        "snippet": "at its oral tone [accent] has suffered, and that our music has lost almost all its energy. Thus we see how singing gradu"
+      },
+      {
+        "code": "rag_block_hyphen_end",
+        "issue_key": "rag_block_hyphen_end::rag/leaf-nodes/derrida-of-grammatology__part-01-writing-before-the-letter__chapter-03-3-of-grammatology-as-a-positive-science__section-science-and-the-name-of-man.md::{\"block\": \"Commentary\", \"index\": 3, \"kind\": \"rag_passage\"}",
+        "path": "rag/leaf-nodes/derrida-of-grammatology__part-01-writing-before-the-letter__chapter-03-3-of-grammatology-as-a-positive-science__section-science-and-the-name-of-man.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 3,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "snippet": "he volumes. That is why, be­ ginning to write without the line, one begins also to reread past writing according to a di"
+      },
+      {
+        "code": "repeated_adjacent_word",
+        "issue_key": "repeated_adjacent_word::body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-interval-and-the-supplement.md::{\"kind\": \"semantic_page\", \"page_label\": \"196\", \"pdf_page\": 280}::word=you",
+        "path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-interval-and-the-supplement.md",
+        "scope_suggestion": {
+          "kind": "semantic_page",
+          "page_label": "196",
+          "pdf_page": 280
+        },
+        "content_mode": "prose",
+        "word": "you",
+        "snippet": "s peignent aussi la solitudeJ, they ten you you are not there alone. Birds whistle; man"
+      }
+    ]
+  },
+  "otherwise_than_being": {
+    "audit_summary": {
+      "status": "warn",
+      "issue_count": 2,
+      "issue_codes": [
+        "overlapping_leaf_ranges",
+        "high_complex_layout_ratio"
+      ]
+    },
+    "structural_issues": [
+      {
+        "code": "overlapping_leaf_ranges",
+        "kind": "boundary",
+        "left_path": "body/part-02-the-exposition/chapter-06-principle-and-anarchy/recurrence.md",
+        "right_path": "body/part-02-the-exposition/chapter-06-principle-and-anarchy/the-self.md",
+        "left_range": {
+          "pdf_page_start": 150,
+          "pdf_page_end": 150
+        },
+        "right_range": {
+          "pdf_page_start": 150,
+          "pdf_page_end": 153
+        },
+        "expected_overlap_kind": "boundary"
+      }
+    ],
+    "probe_issue_summary": {
+      "rag_block_lowercase_start": 18,
+      "repeated_adjacent_word": 3,
+      "rag_block_dangling_end": 3,
+      "rag_block_hyphen_end": 1
+    },
+    "probe_cases": [
+      {
+        "code": "rag_block_lowercase_start",
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-03-3-time-and-discourse__section-d-the-amphibology-of-being-and-entities__pp-38.md::{\"block\": \"Commentary\", \"index\": 1, \"kind\": \"rag_passage\"}",
+        "path": "rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-03-3-time-and-discourse__section-d-the-amphibology-of-being-and-entities__pp-38.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 1,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "snippet": "the confusion between To affirm that this mutation in the amphibology of being and entities is an amphibology of the logos, that it is due to the status of the said, is not to redu"
+      },
+      {
+        "code": "rag_block_dangling_end",
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-06-principle-and-anarchy__section-bw-substitution__pp-113-119.md::{\"block\": \"Commentary\", \"index\": 3, \"kind\": \"rag_passage\"}::tail=to the",
+        "path": "rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-06-principle-and-anarchy__section-bw-substitution__pp-113-119.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 3,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "tail": "to the",
+        "snippet": "munication behind the de facro communication (but without giving this original communication any sense other than the empirical sense of a dialogue or a manifestation of one to the"
+      },
+      {
+        "code": "rag_block_hyphen_end",
+        "issue_key": "rag_block_hyphen_end::rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-07-1-signification-and-the-objective-relation__section-c-the-subject-as-a-speaking-that-is-absorbed-in-the-said__pp-134.md::{\"block\": \"Commentary\", \"index\": 1, \"kind\": \"rag_passage\"}",
+        "path": "rag/leaf-nodes/levinas-otherwise-than-being__part-02-the-exposition__chapter-07-1-signification-and-the-objective-relation__section-c-the-subject-as-a-speaking-that-is-absorbed-in-the-said__pp-134.md",
+        "scope_suggestion": {
+          "kind": "rag_passage",
+          "index": 1,
+          "block": "Commentary"
+        },
+        "content_mode": "prose",
+        "block_kind": "Commentary",
+        "snippet": "A lie would be only the price that being’s finitude costs it. A science would be able to totalize being at all levels of its esse by fixing the ontological structures that articu-"
+      },
+      {
+        "code": "repeated_adjacent_word",
+        "issue_key": "repeated_adjacent_word::body/part-02-the-exposition/chapter-07-1-signification-and-the-objective-relation/d-the-responsible-subject-that-is-not-absorbed-in-being.md::{\"kind\": \"semantic_page\", \"page_label\": \"135\", \"pdf_page\": 176}::word=the",
+        "path": "body/part-02-the-exposition/chapter-07-1-signification-and-the-objective-relation/d-the-responsible-subject-that-is-not-absorbed-in-being.md",
+        "scope_suggestion": {
+          "kind": "semantic_page",
+          "page_label": "135",
+          "pdf_page": 176
+        },
+        "content_mode": "prose",
+        "word": "the",
+        "snippet": "language, by the voices of silence, in the The psyche in the subject then consists in"
+      }
+    ]
+  }
+}

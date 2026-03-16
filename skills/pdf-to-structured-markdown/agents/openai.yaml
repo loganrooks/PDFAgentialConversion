@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF To Structured Markdown"
+  short_description: "Convert books into structured markdown"
+  default_prompt: "Use $pdf-to-structured-markdown to convert this scholarly PDF into a citation-ready markdown bundle with ToC-based section files."

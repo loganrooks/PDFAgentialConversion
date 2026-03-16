@@ -1,0 +1,44 @@
+{
+  "cases": [
+    {
+      "id": "of-grammatology-part-markers",
+      "layout_pages": [
+        "Contents\nAcknowledgmen ts  vll\nTranslator's Preface  ix\nPreface  lxxxix\nPart  i\nWriting before the Letter  1\n1 . The End of the Book and the Beginning of Writing  6\nThe Program  16\nPart  ii\nNature, Culture , Writing  95\n2. \" . . . That Dangerous Supplement . . . \"  141\nNotes  317\nIndex  355"
+      ],
+      "toc_start": 1,
+      "toc_end": 1
+    },
+    {
+      "id": "otherwise-than-being-numbered-body",
+      "layout_pages": [
+        "Contents\nForeword (Richard A. Cohen)  xi\nTranslator\u2019s Introduction (Alphonso Lingis)  xvii\nTranslator\u2019s Note  xlvii\nTHE ARGUMENT  1\n1. Being's \"Other\"  3\n2. Being and Interest  4\n3. The Said and the Saying  5\n4. Subjectivity  8\nTHE EXPOSITION  21\n1. Questioning and Allegiance to the Other  23\n2. Questioning and Being: Time and Reminiscence  26\n3. Time and Discourse  31\na. Sensuous Lived Experience  31\nb. Language  34\nc. The Said and the Saying  37\nIN OTHER WORDS  173\nNotes  187\nIndex  201"
+      ],
+      "toc_start": 1,
+      "toc_end": 1
+    },
+    {
+      "id": "of-grammatology-truncated-hundreds",
+      "layout_pages": [
+        "Contents\nPart  ii\nNature, Culture , Writing  95\n1. The Violence of the Letter: From Levi-Strauss to Rousseau  101\nThe Battle of Proper Names  107\nWriting and Man's Exploitation by Man 1  18\n2. \" . . . That Dangerous Supplement . . . \"  141\nFrom/Of Blindness to the Supplement 1  44\nThe Chain of Supplements 1  52\nThe Exorbitant. Question of Method 1  57\n3. Genesis and Structure of the Essay on the Origin of Languages  165\nWriting, Political Evil, and Linguistic Evil 1  67\nThe Present Debate : The Economy of Pity  171\nThe Initial Debate and the Composition of the Essay 1  92\n4. From/Of the Supplement to the Source: The Theory of Writing  269"
+      ],
+      "toc_start": 1,
+      "toc_end": 1
+    },
+    {
+      "id": "otherwise-pending-chapter-page-leak",
+      "layout_pages": [
+        "Contents\nTHE EXPOSITION  21\nChapter 23\n1. Questioning and Allegiance to the Other  23\nChapter 61\nSensibility and Cognition  61\nChapter 131\n1. Signification and the Objective Relation  131"
+      ],
+      "toc_start": 1,
+      "toc_end": 1
+    },
+    {
+      "id": "split-quoted-title-page-leak",
+      "layout_pages": [
+        "Contents\nIII. Articulation  229\n\"That Movement of the Wand . .\n. \"\n229\nThat \"Simple Movement of the Finger.\" Writing and the\nProhibition of Incest\n255\nThe Inscription of the Origin  242\nThe Neume  247"
+      ],
+      "toc_start": 1,
+      "toc_end": 1
+    }
+  ]
+}

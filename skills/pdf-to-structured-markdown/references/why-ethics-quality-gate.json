@@ -1,0 +1,288 @@
+{
+  "baseline_dir": "baselines/why-ethics",
+  "runtime_gates": {
+    "embedding_timeout_seconds": 180,
+    "embedding_retries": 1,
+    "stability_runs": 2,
+    "calibration": {
+      "requested_runs": 5,
+      "rule": "max(p95 * 2, p99 + 30s)",
+      "report_dir": "generated/why-ethics/quality-gate/embedding-calibration"
+    }
+  },
+  "allowed_audit_codes": [
+    "high_complex_layout_ratio"
+  ],
+  "target_scopes": [
+    {
+      "id": "target-6a-citation",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 2,
+        "label": "6a",
+        "block": "Citation"
+      }
+    },
+    {
+      "id": "target-6a-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 2,
+        "label": "6a",
+        "block": "Commentary"
+      }
+    },
+    {
+      "id": "target-6c-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 4,
+        "label": "6c",
+        "block": "Commentary"
+      }
+    },
+    {
+      "id": "target-6c-reference-notes",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 4,
+        "label": "6c",
+        "block": "Reference Notes"
+      }
+    },
+    {
+      "id": "target-7a-citation",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 5,
+        "label": "7a",
+        "block": "Citation"
+      }
+    },
+    {
+      "id": "target-7c-citation",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 7,
+        "label": "7c",
+        "block": "Citation"
+      }
+    },
+    {
+      "id": "target-7c-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 7,
+        "label": "7c",
+        "block": "Commentary"
+      }
+    },
+    {
+      "id": "target-7d-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 8,
+        "label": "7d",
+        "block": "Commentary"
+      }
+    }
+  ],
+  "holdout_scopes": [
+    {
+      "id": "holdout-why-speak-1d-citation",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-02-why-speak__section-a-the-saying__pp-48-50.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 5,
+        "label": "1d",
+        "block": "Citation"
+      }
+    },
+    {
+      "id": "holdout-why-speak-1d-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-02-why-speak__section-a-the-saying__pp-48-50.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 5,
+        "label": "1d",
+        "block": "Commentary"
+      }
+    },
+    {
+      "id": "holdout-why-mediate-5h-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-02-present-judgments__chapter-02-why-mediate__section-b-media-for-communication__pp-167-171.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 9,
+        "label": "5h",
+        "block": "Commentary"
+      }
+    },
+    {
+      "id": "holdout-re-citation-4f-commentary",
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 19,
+        "label": "4f",
+        "block": "Commentary"
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "id": "control-table-page-122",
+      "path": "spatial/body/part-01-attending-the-future/chapter-05-why-comment/b-reading-and-separation.layout.json",
+      "scope": {
+        "kind": "spatial_page",
+        "page_label": "122",
+        "pdf_page": 139
+      }
+    },
+    {
+      "id": "control-index-page-391",
+      "path": "body/indexes/name-index.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "391",
+        "pdf_page": 408
+      }
+    },
+    {
+      "id": "control-simple-prose-page-66",
+      "path": "body/part-01-attending-the-future/chapter-03-why-write/index.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "66",
+        "pdf_page": 83
+      }
+    }
+  ],
+  "probe_limits": {
+    "max_issue_count": 22,
+    "require_target_class_decrease": false,
+    "forbid_new_issue_codes": true,
+    "freeze_non_target_counts": true
+  },
+  "retrieval_gates": {
+    "benchmark": "why-ethics-retrieval-benchmark.json",
+    "profiles": [
+      "fielded_bm25",
+      "chargram_tfidf",
+      "fused_rrf"
+    ],
+    "corpora": [
+      "rag_linearized",
+      "semantic_flat_clean",
+      "spatial_main_plus_supplement"
+    ],
+    "metrics": [
+      "mean_reciprocal_rank",
+      "hit_at_1",
+      "recall_at_3"
+    ]
+  },
+  "embedding_gates": {
+    "benchmark": "why-ethics-retrieval-benchmark.json",
+    "reference_corpus": "rag_linearized",
+    "corpora": [
+      "rag_linearized",
+      "semantic_flat_clean",
+      "spatial_main_plus_supplement"
+    ],
+    "views": [
+      "body",
+      "contextual"
+    ],
+    "strict_no_drop_metrics": [
+      "twin_hit_at_1"
+    ],
+    "tolerance_metrics": {
+      "mean_twin_cosine": 0.001,
+      "twin_mean_reciprocal_rank": 0.001
+    }
+  },
+  "manual_sample": {
+    "enforce_acceptance": true,
+    "minimum_pass_count": 10,
+    "require_no_fail": true,
+    "require_target_pass": true,
+    "entries": [
+      {
+        "scope_id": "target-7c-citation",
+        "verdict": "pass",
+        "checklist_line": "Citation should remain contiguous to the Hillel-Shammai quotation and should not swallow lower commentary lines."
+      },
+      {
+        "scope_id": "target-6c-commentary",
+        "verdict": "pass",
+        "checklist_line": "Commentary should discuss sign materiality without swallowing reference-note text."
+      },
+      {
+        "scope_id": "target-6c-reference-notes",
+        "verdict": "pass",
+        "checklist_line": "Reference notes should preserve the Derrida note body and stay out of commentary."
+      },
+      {
+        "scope_id": "target-7a-citation",
+        "verdict": "pass",
+        "checklist_line": "Citation should begin 'We have said that' inside the citation block, not in commentary."
+      },
+      {
+        "scope_id": "target-7c-commentary",
+        "verdict": "pass",
+        "checklist_line": "Commentary should not splice the Erubin quotation mid-sentence or strand note markers."
+      },
+      {
+        "scope_id": "target-7d-commentary",
+        "verdict": "pass",
+        "checklist_line": "Commentary should remain contiguous and should not end as a visibly cut-off paragraph."
+      },
+      {
+        "scope_id": "holdout-why-speak-1d-citation",
+        "verdict": "pass",
+        "checklist_line": "Holdout citation should remain contiguous and artifact-free."
+      },
+      {
+        "scope_id": "holdout-why-speak-1d-commentary",
+        "verdict": "pass",
+        "checklist_line": "Holdout commentary should remain contiguous and keep the repaired lead-in."
+      },
+      {
+        "scope_id": "holdout-why-mediate-5h-commentary",
+        "verdict": "pass",
+        "checklist_line": "Holdout commentary should retain the repaired hyphen carry and stay readable."
+      },
+      {
+        "scope_id": "holdout-re-citation-4f-commentary",
+        "verdict": "pass",
+        "checklist_line": "Holdout commentary should stay stable on the repeated-label leaf and keep its current block assignment."
+      },
+      {
+        "scope_id": "control-table-page-122",
+        "verdict": "pass",
+        "checklist_line": "The table control should remain content_mode table and should not be judged as broken prose."
+      },
+      {
+        "scope_id": "control-index-page-391",
+        "verdict": "pass",
+        "checklist_line": "The index control should remain index-like rather than being coerced into prose expectations."
+      }
+    ]
+  },
+  "stretch_targets": {
+    "probe_issue_count": 18,
+    "notes": [
+      "The current 22-issue probe state is the hard veto baseline.",
+      "The earlier 18-issue state remains the stretch target for the broader chapter-5 cleanup."
+    ]
+  }
+}

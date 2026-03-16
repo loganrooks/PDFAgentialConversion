@@ -1,0 +1,51 @@
+{
+  "bundle_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/why-ethics",
+  "benchmark": "why-ethics-retrieval-benchmark",
+  "summary_by_run": {
+    "rag_linearized::fielded_bm25": {
+      "mean_reciprocal_rank": 0.96,
+      "hit_at_1": 0.92,
+      "recall_at_3": 1.0
+    },
+    "rag_linearized::chargram_tfidf": {
+      "mean_reciprocal_rank": 0.9224,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    },
+    "rag_linearized::fused_rrf": {
+      "mean_reciprocal_rank": 0.9264,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    },
+    "semantic_flat_clean::fielded_bm25": {
+      "mean_reciprocal_rank": 0.98,
+      "hit_at_1": 0.96,
+      "recall_at_3": 1.0
+    },
+    "semantic_flat_clean::chargram_tfidf": {
+      "mean_reciprocal_rank": 0.9224,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    },
+    "semantic_flat_clean::fused_rrf": {
+      "mean_reciprocal_rank": 0.9271,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    },
+    "spatial_main_plus_supplement::fielded_bm25": {
+      "mean_reciprocal_rank": 0.98,
+      "hit_at_1": 0.96,
+      "recall_at_3": 1.0
+    },
+    "spatial_main_plus_supplement::chargram_tfidf": {
+      "mean_reciprocal_rank": 0.9222,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    },
+    "spatial_main_plus_supplement::fused_rrf": {
+      "mean_reciprocal_rank": 0.9281,
+      "hit_at_1": 0.92,
+      "recall_at_3": 0.92
+    }
+  }
+}

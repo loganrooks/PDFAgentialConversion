@@ -1,0 +1,37 @@
+{
+  "valid_config": {
+    "backends": [
+      {
+        "id": "fake-gpu-host",
+        "label": "Fake GPU Host",
+        "transport": "ssh",
+        "ssh_target": "fake-host",
+        "remote_root": "/remote/pdfmd",
+        "python_bin": "python3",
+        "venv_dir": "venv",
+        "device": "auto",
+        "bootstrap_mode": "ssh_venv",
+        "models": [
+          "BAAI/bge-small-en-v1.5"
+        ]
+      }
+    ]
+  },
+  "invalid_missing_field": {
+    "backends": [
+      {
+        "id": "broken-host",
+        "label": "Broken Host",
+        "ssh_target": "broken-host",
+        "remote_root": "/remote/pdfmd",
+        "python_bin": "python3",
+        "venv_dir": "venv",
+        "device": "auto",
+        "bootstrap_mode": "ssh_venv",
+        "models": [
+          "BAAI/bge-small-en-v1.5"
+        ]
+      }
+    ]
+  }
+}

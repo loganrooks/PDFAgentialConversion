@@ -1,0 +1,251 @@
+{
+  "checks": [
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-02-why-speak__section-a-the-saying__pp-48-50.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "1d",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "This psychological sequence, here",
+        "This saying is the ‘more’ of communication"
+      ],
+      "must_not_contain": [
+        "INTENTION OF MAKING making",
+        "saydecoding"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-02-why-speak__section-a-the-saying__pp-48-50.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "1d",
+        "block": "Citation"
+      },
+      "must_contain": [
+        "which the intention of making signs",
+        "for interpretation and decoding"
+      ]
+    },
+    {
+      "path": "body/part-01-attending-the-future/chapter-02-why-speak/a-the-saying.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "50"
+      },
+      "must_contain": [
+        "receiver acting similarly (perception leading back into concept)."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "4f",
+        "block": "Commentary"
+      },
+      "must_match": [
+        "Levinas now reintroduces the INTERLOCUTOR, as he did in the previous pretext\\."
+      ],
+      "must_not_match": [
+        "(^|[^A-Za-z])LOCUTOR, as he did in the previous pretext\\."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-02-why-speak__section-a-the-saying__pp-48-50.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "1b",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "Can speaking be anything besides this mere play from a safe home?"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-02-present-judgments__chapter-02-why-mediate__section-b-media-for-communication__pp-167-171.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "5h",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "trusting general terms beyond the specificity of the other person."
+      ],
+      "must_not_contain": [
+        "trusting general terms be-"
+      ]
+    },
+    {
+      "path": "spatial/body/part-01-attending-the-future/chapter-04-why-read/c-re-citation.layout.json",
+      "scope": {
+        "kind": "spatial_page",
+        "page_label": "104"
+      },
+      "must_contain": [
+        "\"content_mode\": \"table\""
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "6a",
+        "block": "Citation"
+      },
+      "must_contain": [
+        "It is from this plenitude—with all its"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "6a",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "The give and take of text and reader produces readings"
+      ],
+      "must_not_contain": [
+        "The give and take of text and reader It is produces"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "6c",
+        "block": "Commentary"
+      },
+      "must_not_contain": [
+        "It concerns a certain Judaism as birth and passion of writing."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "6c",
+        "block": "Reference Notes"
+      },
+      "must_contain": [
+        "6 Derrida WD 99/64",
+        "It concerns a certain Judaism as birth and passion of writing."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "7a",
+        "block": "Citation"
+      },
+      "must_contain": [
+        "We have said that the Oral Torah was written down in the Talmud."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "7a",
+        "block": "Commentary"
+      },
+      "must_not_contain": [
+        "Levinas opts for a prevalent argument We have"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "7c",
+        "block": "Citation"
+      },
+      "must_contain": [
+        "the well-known formula: “These ones and the others are the word of the living God.”"
+      ],
+      "must_not_contain": [
+        "Both can be right, but THE RULING will have to be made in one direction.",
+        "Levinas satisfies his reader with a mere citation"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "7c",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "the ethical dimension of jurisprudence. Levinas satisfies his reader with a mere citation"
+      ],
+      "must_not_contain": [
+        "8) Erubin 13b",
+        "R. Abba said that Samuel said:"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-05-why-comment__section-c-commentaries__pp-123-130.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "7d",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "But the ongoing riskiness of writing and reading is “oral” in Levinas’ sense of the term."
+      ],
+      "must_not_contain": [
+        "Aronowicz, Annette.",
+        "This page intentionally left blank"
+      ]
+    },
+    {
+      "path": "body/part-04-repenting-history/chapter-01-why-repent/a-return.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "310"
+      },
+      "must_not_contain": [
+        "B. GREAT IS REPENTANCE"
+      ]
+    },
+    {
+      "path": "body/part-04-repenting-history/chapter-01-why-repent/b-great-is-repentance.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "310"
+      },
+      "must_contain": [
+        "The asymmetries in the Biblical relationship are transformed in the time of the sages"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "2a",
+        "block": "Commentary"
+      },
+      "must_not_contain": [
+        "Horkheimer admits that the question of"
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md",
+      "scope": {
+        "kind": "rag_passage",
+        "label": "3b",
+        "block": "Commentary"
+      },
+      "must_contain": [
+        "Horkheimer’s dialectic involves regarding the past as both closed and not-closed."
+      ],
+      "must_not_match": [
+        "(^|\\n\\n)ing the past as both closed and not-closed\\."
+      ]
+    }
+  ]
+}

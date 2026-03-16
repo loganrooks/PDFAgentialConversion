@@ -1,0 +1,273 @@
+{
+  "name": "root-pdf-challenge-corpus",
+  "generated_at": "2026-03-12T06:33:18.424358+00:00",
+  "status": "fail",
+  "entries": [
+    {
+      "id": "of-grammatology",
+      "label": "Of Grammatology",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Derrida_OfGrammatology.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/of-grammatology",
+      "convert": {
+        "status": "pass",
+        "output": {
+          "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/of-grammatology",
+          "book_id": "derrida-of-grammatology"
+        },
+        "stderr": ""
+      },
+      "audit": {
+        "exit_code": 1,
+        "stderr": "",
+        "status": "fail",
+        "issue_count": 12,
+        "issue_codes": [
+          "missing_title",
+          "missing_authors",
+          "missing_publisher",
+          "duplicate_output_path",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges"
+        ]
+      },
+      "probe": {
+        "exit_code": 0,
+        "stderr": "",
+        "issue_count": 3,
+        "issue_summary": {
+          "repeated_adjacent_word": 2,
+          "boundary_page_many_micro_regions": 1
+        }
+      },
+      "chunk_diagnostics": {
+        "passage_block_atomic": {
+          "count": 85,
+          "min_tokens": 0,
+          "max_tokens": 53531,
+          "mean_tokens": 5621.51,
+          "median_tokens": 325.0,
+          "p90_tokens": 17070.4,
+          "total_chunks": 85,
+          "total_tokens": 477828
+        },
+        "window_700": {
+          "count": 75,
+          "min_tokens": 1,
+          "max_tokens": 53531,
+          "mean_tokens": 6371.04,
+          "median_tokens": 884.0,
+          "p90_tokens": 22108.0,
+          "total_chunks": 75,
+          "total_tokens": 477828,
+          "oversized_atomic_units": 38
+        },
+        "window_1000": {
+          "count": 73,
+          "min_tokens": 3,
+          "max_tokens": 53531,
+          "mean_tokens": 6545.59,
+          "median_tokens": 1028.0,
+          "p90_tokens": 22572.0,
+          "total_chunks": 73,
+          "total_tokens": 477828,
+          "oversized_atomic_units": 37
+        },
+        "window_1400": {
+          "count": 70,
+          "min_tokens": 3,
+          "max_tokens": 53531,
+          "mean_tokens": 6826.11,
+          "median_tokens": 1152.5,
+          "p90_tokens": 24294.4,
+          "total_chunks": 70,
+          "total_tokens": 477828,
+          "oversized_atomic_units": 33
+        }
+      },
+      "bundle_paths": {
+        "metadata": "generated/of-grammatology/metadata.json",
+        "index": "generated/of-grammatology/index.md",
+        "toc": "generated/of-grammatology/toc.md"
+      }
+    },
+    {
+      "id": "specters-of-marx",
+      "label": "Specters of Marx",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Derrida_SpectersOfMarx.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/specters-of-marx",
+      "convert": {
+        "status": "pass",
+        "output": {
+          "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/specters-of-marx",
+          "book_id": "derrida-specters-of-marx"
+        },
+        "stderr": ""
+      },
+      "audit": {
+        "exit_code": 1,
+        "stderr": "",
+        "status": "fail",
+        "issue_count": 4,
+        "issue_codes": [
+          "missing_title",
+          "missing_authors",
+          "missing_publisher",
+          "missing_publication_year"
+        ]
+      },
+      "probe": {
+        "exit_code": 0,
+        "stderr": "",
+        "issue_count": 0,
+        "issue_summary": {}
+      },
+      "chunk_diagnostics": {
+        "passage_block_atomic": {
+          "count": 21,
+          "min_tokens": 3,
+          "max_tokens": 23529,
+          "mean_tokens": 4495.43,
+          "median_tokens": 419.0,
+          "p90_tokens": 13045.0,
+          "total_chunks": 21,
+          "total_tokens": 94404
+        },
+        "window_700": {
+          "count": 19,
+          "min_tokens": 3,
+          "max_tokens": 23529,
+          "mean_tokens": 4968.63,
+          "median_tokens": 1364.0,
+          "p90_tokens": 14689.6,
+          "total_chunks": 19,
+          "total_tokens": 94404,
+          "oversized_atomic_units": 10
+        },
+        "window_1000": {
+          "count": 19,
+          "min_tokens": 3,
+          "max_tokens": 23529,
+          "mean_tokens": 4968.63,
+          "median_tokens": 1364.0,
+          "p90_tokens": 14689.6,
+          "total_chunks": 19,
+          "total_tokens": 94404,
+          "oversized_atomic_units": 10
+        },
+        "window_1400": {
+          "count": 19,
+          "min_tokens": 3,
+          "max_tokens": 23529,
+          "mean_tokens": 4968.63,
+          "median_tokens": 1364.0,
+          "p90_tokens": 14689.6,
+          "total_chunks": 19,
+          "total_tokens": 94404,
+          "oversized_atomic_units": 9
+        }
+      },
+      "bundle_paths": {
+        "metadata": "generated/specters-of-marx/metadata.json",
+        "index": "generated/specters-of-marx/index.md",
+        "toc": "generated/specters-of-marx/toc.md"
+      }
+    },
+    {
+      "id": "otherwise-than-being",
+      "label": "Otherwise than Being",
+      "input_pdf": "/Users/rookslog/Projects/PDFAgentialConversion/Levinas_OtherwiseThanBeing.pdf",
+      "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/otherwise-than-being",
+      "convert": {
+        "status": "pass",
+        "output": {
+          "output_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/otherwise-than-being",
+          "book_id": "levinas-otherwise-than-being"
+        },
+        "stderr": ""
+      },
+      "audit": {
+        "exit_code": 1,
+        "stderr": "",
+        "status": "fail",
+        "issue_count": 8,
+        "issue_codes": [
+          "missing_title",
+          "missing_authors",
+          "missing_publisher",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "overlapping_leaf_ranges",
+          "high_complex_layout_ratio"
+        ]
+      },
+      "probe": {
+        "exit_code": 0,
+        "stderr": "",
+        "issue_count": 8,
+        "issue_summary": {
+          "repeated_adjacent_word": 1,
+          "rag_block_lowercase_start": 4,
+          "rag_block_hyphen_end": 1,
+          "rag_block_dangling_end": 2
+        }
+      },
+      "chunk_diagnostics": {
+        "passage_block_atomic": {
+          "count": 124,
+          "min_tokens": 1,
+          "max_tokens": 9259,
+          "mean_tokens": 937.78,
+          "median_tokens": 390.5,
+          "p90_tokens": 2375.3,
+          "total_chunks": 124,
+          "total_tokens": 116285
+        },
+        "window_700": {
+          "count": 109,
+          "min_tokens": 2,
+          "max_tokens": 9259,
+          "mean_tokens": 1066.83,
+          "median_tokens": 507.0,
+          "p90_tokens": 2441.0,
+          "total_chunks": 109,
+          "total_tokens": 116285,
+          "oversized_atomic_units": 49
+        },
+        "window_1000": {
+          "count": 104,
+          "min_tokens": 2,
+          "max_tokens": 9259,
+          "mean_tokens": 1118.12,
+          "median_tokens": 542.0,
+          "p90_tokens": 2461.0,
+          "total_chunks": 104,
+          "total_tokens": 116285,
+          "oversized_atomic_units": 41
+        },
+        "window_1400": {
+          "count": 93,
+          "min_tokens": 2,
+          "max_tokens": 9259,
+          "mean_tokens": 1250.38,
+          "median_tokens": 903.0,
+          "p90_tokens": 2542.6,
+          "total_chunks": 93,
+          "total_tokens": 116285,
+          "oversized_atomic_units": 30
+        }
+      },
+      "bundle_paths": {
+        "metadata": "generated/otherwise-than-being/metadata.json",
+        "index": "generated/otherwise-than-being/index.md",
+        "toc": "generated/otherwise-than-being/toc.md"
+      }
+    }
+  ]
+}

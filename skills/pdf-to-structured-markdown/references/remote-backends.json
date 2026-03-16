@@ -1,0 +1,20 @@
+{
+  "backends": [
+    {
+      "id": "dionysus",
+      "label": "Dionysus Tailscale GPU Host",
+      "transport": "ssh",
+      "ssh_target": "dionysus",
+      "remote_root": "/home/rookslog/pdfmd-remote-experiments",
+      "python_bin": "python3",
+      "venv_dir": "venv",
+      "device": "auto",
+      "bootstrap_mode": "ssh_venv",
+      "models": [
+        "BAAI/bge-small-en-v1.5",
+        "BAAI/bge-base-en-v1.5",
+        "intfloat/e5-base-v2"
+      ]
+    }
+  ]
+}

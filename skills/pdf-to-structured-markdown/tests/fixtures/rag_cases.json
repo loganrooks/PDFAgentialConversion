@@ -1,0 +1,71 @@
+{
+  "cases": [
+    {
+      "id": "synthetic-unanchored-commentary",
+      "repeat": 5,
+      "passages": [
+        {
+          "passage_id": "preamble-01",
+          "label": null,
+          "source_ref": "",
+          "citation_parts": [],
+          "commentary_parts": [
+            "Paragraph one begins with a continuous commentary block that should remain contiguous and readable without premature line breaks. It carries the main argument through several sentences so that the splitter has enough material to work with. Paragraph one keeps developing the same idea and ends in a complete sentence.\n\nParagraph two continues the prose without any citation marker. It should be grouped by paragraph and then packed into a bounded pseudo-passage rather than left as a single enormous commentary block. Paragraph two closes cleanly.\n\nParagraph three is similarly ordinary prose. It exists only to push the passage over the unanchored size threshold, forcing the segmentation logic to split by paragraph boundaries before any sentence-level fallback is needed.\n\nParagraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role. Paragraph four repeats the same structural role.\n\nParagraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role. Paragraph five repeats the same structural role.\n\nParagraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role. Paragraph six repeats the same structural role.\n\nParagraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role. Paragraph seven repeats the same structural role.\n\nParagraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role. Paragraph eight repeats the same structural role.\n\nParagraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role. Paragraph nine repeats the same structural role.\n\nParagraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role. Paragraph ten repeats the same structural role."
+          ],
+          "reference_parts": [],
+          "page_labels": [
+            "iv",
+            "v"
+          ],
+          "pdf_pages": [
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anchored-long-citation-control",
+      "passages": [
+        {
+          "passage_id": "1a",
+          "label": "1a",
+          "source_ref": "Derrida, p. 3",
+          "citation_parts": [
+            "This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block. This is an anchored citation block."
+          ],
+          "commentary_parts": [],
+          "reference_parts": [],
+          "page_labels": [
+            "3"
+          ],
+          "pdf_pages": [
+            42
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anchored-oversized-note",
+      "repeat": 45,
+      "passages": [
+        {
+          "passage_id": "40t",
+          "label": "40t",
+          "source_ref": "Derrida, p. 317",
+          "citation_parts": [
+            "This anchored note passage is deliberately long so the converter must split it into bounded pseudo-passages while preserving the original label and provenance. It should not remain as a single retrieval unit once it grows beyond the hard cap."
+          ],
+          "commentary_parts": [],
+          "reference_parts": [],
+          "page_labels": [
+            "317"
+          ],
+          "pdf_pages": [
+            401
+          ]
+        }
+      ]
+    }
+  ]
+}

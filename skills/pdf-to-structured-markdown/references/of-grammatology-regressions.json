@@ -1,0 +1,110 @@
+{
+  "checks": [
+    {
+      "path": "body/part-01-writing-before-the-letter/chapter-01-1-the-end-of-the-book-and-the-beginning-of-writing/the-program.md",
+      "scope": {
+        "kind": "semantic_page",
+        "page_label": "6",
+        "pdf_page": 92
+      },
+      "must_match": [
+        "^By a slow movement whose necessity is hardly perceptible"
+      ]
+    },
+    {
+      "path": "body/part-01-writing-before-the-letter/chapter-01-1-the-end-of-the-book-and-the-beginning-of-writing/the-program.md",
+      "must_contain": [
+        "# The Program",
+        "Source pages: 6-10 (PDF 92-96)."
+      ],
+      "must_not_contain": [
+        "# . ."
+      ]
+    },
+    {
+      "path": "rag/leaf-nodes/derrida-of-grammatology__part-01-writing-before-the-letter__chapter-01-1-the-end-of-the-book-and-the-beginning-of-writing__section-the-program__pp-6-10.md",
+      "scope": {
+        "kind": "rag_passage",
+        "index": 1,
+        "block": "Commentary"
+      },
+      "must_match": [
+        "^By a slow movement whose necessity is hardly perceptible"
+      ],
+      "must_not_match": [
+        "^question is-where"
+      ]
+    },
+    {
+      "path": "toc.md",
+      "must_contain": [
+        "[The Outside )( the Inside](body/part-01-writing-before-the-letter/chapter-02-2-linguistics-and-grammatology/the-outside-the-inside.md)",
+        "[II. Imitation](body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/ii-imitation.md)"
+      ],
+      "must_not_contain": [
+        "The Outside� the Inside"
+      ]
+    },
+    {
+      "path": "body/part-01-writing-before-the-letter/chapter-02-2-linguistics-and-grammatology/the-outside-the-inside.md",
+      "must_contain": [
+        "# The Outside )( the Inside",
+        "pdf_page_start: 130",
+        "pdf_page_end: 151"
+      ],
+      "must_not_contain": [
+        "The Outside� the Inside"
+      ]
+    },
+    {
+      "path": "body/part-01-writing-before-the-letter/chapter-02-2-linguistics-and-grammatology/the-outside-and-the-inside.md",
+      "scope": {
+        "kind": "semantic_page",
+        "pdf_page": 116
+      },
+      "must_match": [
+        "^On the one hand, true to the Western tradition"
+      ],
+      "must_not_match": [
+        "^uttered\\) liberates the future"
+      ]
+    },
+    {
+      "path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-initial-debate-and-the-composition-of-the-essay.md",
+      "must_contain": [
+        "# The Initial Debate and the Composition of the Essay",
+        "Source pages: 192-194 (PDF 276-278)."
+      ]
+    },
+    {
+      "path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/ii-imitation.md",
+      "must_contain": [
+        "# II. Imitation",
+        "Source pages: 195 (PDF 279-279)."
+      ],
+      "must_not_contain": [
+        "Source pages: unknown"
+      ]
+    },
+    {
+      "path": "body/part-02-nature-culture-writing/chapter-03-3-genesis-and-structure-of-the-essay-on-the-origin-of-languages/the-interval-and-the-supplement.md",
+      "must_contain": [
+        "# The Interval and the Supplement",
+        "Source pages: 195-200 (PDF 279-284)."
+      ]
+    },
+    {
+      "path": "body/part-01-writing-before-the-letter/chapter-03-3-of-grammatology-as-a-positive-science/algebra-arcanum-and-transparence.md",
+      "scope": {
+        "kind": "semantic_page",
+        "pdf_page": 161
+      },
+      "must_match": [
+        "^Transparence"
+      ],
+      "must_not_match": [
+        "^question is-where"
+      ]
+    }
+  ]
+}

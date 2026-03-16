@@ -1,0 +1,209 @@
+{
+  "cases": [
+    {
+      "id": "top-margin-body-line-control",
+      "line": {
+        "text": "question is-where and when writing begins. What is writing? How can it",
+        "y0": 37.34
+      },
+      "expected_skip": false
+    },
+    {
+      "id": "running-header-control",
+      "line": {
+        "text": "Part II: Nature, Culture, Writing",
+        "y0": 19.8
+      },
+      "expected_skip": true
+    },
+    {
+      "id": "running-header-late-control",
+      "line": {
+        "text": "Part II: Nature, Culture, Writing",
+        "y0": 35.08
+      },
+      "expected_skip": true
+    },
+    {
+      "id": "split-heading-b-language",
+      "line_items": [
+        {
+          "text": "b.",
+          "x0": 48.24,
+          "y0": 378.76,
+          "x1": 54.84,
+          "y1": 387.77
+        },
+        {
+          "text": "Language",
+          "x0": 62.52,
+          "y0": 378.76,
+          "x1": 103.2,
+          "y1": 387.77
+        }
+      ],
+      "skip_keys": [
+        "blanguage"
+      ],
+      "expected_band": [
+        376.76,
+        389.77
+      ]
+    },
+    {
+      "id": "duplicate-boundary-control",
+      "left": "They tell you",
+      "right": "you are not there alone.",
+      "expected_space": "They tell you you are not there alone.",
+      "expected_duplicate": "They tell you are not there alone."
+    },
+    {
+      "id": "hyphen-join-positive",
+      "previous": {
+        "region_id": "r22",
+        "pdf_page": 124,
+        "role": "main",
+        "zone": "center",
+        "x0": 47.5,
+        "y0": 632.0,
+        "x1": 364.8,
+        "y1": 705.6,
+        "raw_text": "with that of which it is conscious? Does it not feel that any kinship with\nthat of which i1t i1s conscious compromises its truth?\nThe approach is precisely an implication of the approaching one in fra-\nternity. When it becomes conscious, that is, thematized, the indifferent\napproach destroys this kinship, like a caress surprising itself to be a palpa-\ntion, or recovering possession of itself. The subjectivity of the approaching\nsubject is then preliminary, anarchic, prior to consciousness, an implica-"
+      },
+      "current": {
+        "region_id": "r01",
+        "pdf_page": 125,
+        "role": "main",
+        "zone": "center",
+        "x0": 47.2,
+        "y0": 33.8,
+        "x1": 363.4,
+        "y1": 78.4,
+        "raw_text": "tion, a being caught up in fraternity. This being caught up in fraternity\nwhich proximity is we call signifyingness. It is impossible without the ego"
+      },
+      "expected_join_mode": "hyphen"
+    },
+    {
+      "id": "note-apparatus-negative",
+      "previous": {
+        "region_id": "r08",
+        "pdf_page": 225,
+        "role": "main",
+        "zone": "left",
+        "x0": 46.8,
+        "y0": 210.0,
+        "x1": 121.0,
+        "y1": 224.2,
+        "raw_text": ". Cf. infra. ch."
+      },
+      "current": {
+        "region_id": "r09",
+        "pdf_page": 225,
+        "role": "main",
+        "zone": "left",
+        "x0": 47.0,
+        "y0": 226.1,
+        "x1": 75.4,
+        "y1": 238.7,
+        "raw_text": "V, 3."
+      },
+      "expected_join_mode": null
+    },
+    {
+      "id": "notes-page-reclassify",
+      "entry_kind": "chapter",
+      "entry_title": "Notes",
+      "layout_kind": "aside",
+      "regions": [
+        {
+          "region_id": "r01",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "CHAPTER"
+        },
+        {
+          "region_id": "r03",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "supra, Note p. xli.\n."
+        },
+        {
+          "region_id": "r05",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "gis (The\nHague,"
+        },
+        {
+          "region_id": "r08",
+          "role": "main",
+          "zone": "left",
+          "raw_text": ".\nCf. infra. ch."
+        },
+        {
+          "region_id": "r09",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "V, 3."
+        },
+        {
+          "region_id": "r10",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "wn"
+        },
+        {
+          "region_id": "r12",
+          "role": "aside",
+          "zone": "right",
+          "raw_text": "It is the superlative, more than the ne-"
+        },
+        {
+          "region_id": "r14",
+          "role": "aside",
+          "zone": "right",
+          "raw_text": "In subjectivity the"
+        },
+        {
+          "region_id": "r16",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "skin going under another skin."
+        },
+        {
+          "region_id": "r31",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "."
+        },
+        {
+          "region_id": "r33",
+          "role": "main",
+          "zone": "left",
+          "raw_text": "CHAPTER 1l"
+        }
+      ],
+      "expected_content_mode": "index"
+    },
+    {
+      "id": "specters-clean-page-control",
+      "entry_kind": "section",
+      "entry_title": "Apparition of the Inapparent",
+      "layout_kind": "simple",
+      "regions": [
+        {
+          "region_id": "r01",
+          "role": "main",
+          "zone": "center",
+          "raw_text": "Apparition of the inapparent cannot be reduced to the mechanical drift of typography."
+        },
+        {
+          "region_id": "r02",
+          "role": "main",
+          "zone": "center",
+          "raw_text": "The prose remains continuous, complete, and unbroken across the page."
+        }
+      ],
+      "expected_content_mode": "prose"
+    }
+  ]
+}

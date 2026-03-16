@@ -1,0 +1,273 @@
+{
+  "probe_drift": {
+    "baseline_issue_summary": {
+      "repeated_adjacent_word": 4,
+      "rag_block_lowercase_start": 7,
+      "rag_block_hyphen_end": 7,
+      "rag_block_dangling_end": 3,
+      "boundary_page_many_micro_regions": 1
+    },
+    "current_issue_summary": {
+      "repeated_adjacent_word": 5,
+      "rag_block_lowercase_start": 8,
+      "rag_block_hyphen_end": 7,
+      "rag_block_dangling_end": 5
+    },
+    "cases": [
+      {
+        "issue_key": "repeated_adjacent_word::body/introduction/d-a-map.md::{\"kind\": \"semantic_page\", \"page_label\": \"22\", \"pdf_page\": 39}::word=the",
+        "code": "repeated_adjacent_word",
+        "path": "body/introduction/d-a-map.md",
+        "scope_suggestion": {"kind": "semantic_page", "page_label": "22", "pdf_page": 39},
+        "content_mode": "prose",
+        "word": "the",
+        "snippet": ". Chapter 16, Why Forgive? Not only is the the repenter changed in repentance, but tha"
+      },
+      {
+        "issue_key": "repeated_adjacent_word::rag/leaf-nodes/robert-gibbs-why-ethics__introduction__section-d-a-map__pp-13-23.md::{\"block\": \"Commentary\", \"index\": 4, \"kind\": \"rag_passage\"}::word=the",
+        "code": "repeated_adjacent_word",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__introduction__section-d-a-map__pp-13-23.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 4, "block": "Commentary"},
+        "content_mode": "prose",
+        "word": "the",
+        "snippet": ". Chapter 16, Why Forgive? Not only is the the repenter changed in repentance, but tha"
+      },
+      {
+        "issue_key": "repeated_adjacent_word::body/part-01-attending-the-future/chapter-03-why-write/a-writing-withdrawal.md::{\"kind\": \"semantic_page\", \"page_label\": \"69\", \"pdf_page\": 86}::word=the",
+        "code": "repeated_adjacent_word",
+        "path": "body/part-01-attending-the-future/chapter-03-why-write/a-writing-withdrawal.md",
+        "scope_suggestion": {"kind": "semantic_page", "page_label": "69", "pdf_page": 86},
+        "content_mode": "prose",
+        "word": "The",
+        "snippet": ". There EFFACED IN ITS OWN PRODUCTION. The the signified functions always al- doublin"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-03-why-write__section-a-writing-withdrawal__pp-67-74.md::{\"block\": \"Commentary\", \"index\": 6, \"kind\": \"rag_passage\", \"label\": \"1b\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-03-why-write__section-a-writing-withdrawal__pp-67-74.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 6, "label": "1b", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "bling of signifying, the way that a sign can itself be the referent of a sign, but this is no longer ACCIDENTAL or some sort of fall into SECONDARINESS. Writing names the way that "
+      },
+      {
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-b-closure-of-philosophy__pp-89-95.md::{\"block\": \"Commentary\", \"index\": 14, \"kind\": \"rag_passage\", \"label\": \"3a\"}::tail=accessible in",
+        "code": "rag_block_dangling_end",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-b-closure-of-philosophy__pp-89-95.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 14, "label": "3a", "block": "Commentary"},
+        "content_mode": "prose",
+        "tail": "accessible in",
+        "snippet": "the failure to respond, to attend to the other person. It ASSERTS its COHERENCE and UNITY, making every break, every moment of another’s interiority accessible to me, accessible in"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md::{\"block\": \"Commentary\", \"index\": 28, \"kind\": \"rag_passage\", \"label\": \"6c\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 28, "label": "6c", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "course is unstoppable and is clearly the act of speaking, and he omits the further discussion of the story, of history and historitextuality and how it works, Levinas’ own gression"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md::{\"block\": \"Commentary\", \"index\": 42, \"kind\": \"rag_passage\", \"label\": \"4f\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 42, "label": "4f", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "that Levinas’ own writing, because it is ofnot enter into the present, that flees But I interrupt again the ultimate discourse where all discourse is announced, in saying it to som"
+      },
+      {
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md::{\"block\": \"Commentary\", \"index\": 61, \"kind\": \"rag_passage\", \"label\": \"4b\"}::tail=in the",
+        "code": "rag_block_dangling_end",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 61, "label": "4b", "block": "Commentary"},
+        "content_mode": "prose",
+        "tail": "in the",
+        "snippet": "The sentence which includes (d) is structured oppositionally: the said thematizes, but the intervals remain, irrecuperable, a past that cannot be made present in the"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md::{\"block\": \"Commentary\", \"index\": 63, \"kind\": \"rag_passage\", \"label\": \"4c\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 63, "label": "4c", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "both commentaries by Derrida is a move to the immanence of the said as place where the trace of the past, and so transcendence, remains."
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md::{\"block\": \"Commentary\", \"index\": 65, \"kind\": \"rag_passage\", \"label\": \"4d\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-01-attending-the-future__chapter-04-why-read__section-c-re-citation__pp-95-113.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 65, "label": "4d", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "thread is reknotted?"
+      },
+      {
+        "issue_key": "repeated_adjacent_word::body/part-01-attending-the-future/chapter-05-why-comment/c-commentaries.md::{\"kind\": \"semantic_page\", \"page_label\": \"124\", \"pdf_page\": 141}::word=the",
+        "code": "repeated_adjacent_word",
+        "path": "body/part-01-attending-the-future/chapter-05-why-comment/c-commentaries.md",
+        "scope_suggestion": {"kind": "semantic_page", "page_label": "124", "pdf_page": 141},
+        "content_mode": "prose",
+        "word": "the",
+        "snippet": "s, they are these or those depending on the the LIVED CONTEXT. The reader’s own lived"
+      },
+      {
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/robert-gibbs-why-ethics__part-02-present-judgments__chapter-01-why-reason__section-c-mutuality-and-asymmetry__pp-145-155.md::{\"block\": \"Commentary\", \"index\": 32, \"kind\": \"rag_passage\", \"label\": \"8d\"}::tail=university of",
+        "code": "rag_block_dangling_end",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-02-present-judgments__chapter-01-why-reason__section-c-mutuality-and-asymmetry__pp-145-155.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 32, "label": "8d", "block": "Commentary"},
+        "content_mode": "prose",
+        "tail": "university of",
+        "snippet": "mbridge University Press, 1995. Lyotard, Jean-François. Le Différend. Paris: Les Éditions de Minuit, 1983. The Differend. Trans. Georges Van Den Abbeele. Minneapolis: University of"
+      },
+      {
+        "issue_key": "repeated_adjacent_word::body/part-03-pragmatism-pragmatics-and-method/chapter-04-why-translate/b-jewish-new-thinking.md::{\"kind\": \"semantic_page\", \"page_label\": \"288\", \"pdf_page\": 305}::word=the",
+        "code": "repeated_adjacent_word",
+        "path": "body/part-03-pragmatism-pragmatics-and-method/chapter-04-why-translate/b-jewish-new-thinking.md",
+        "scope_suggestion": {"kind": "semantic_page", "page_label": "288", "pdf_page": 305},
+        "content_mode": "prose",
+        "word": "the",
+        "snippet": "to praise of a king. Rosenzweig selects the the king. My tongue is the pen of a portion"
+      },
+      {
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md::{\"block\": \"Commentary\", \"index\": 3, \"kind\": \"rag_passage\", \"label\": \"2a\"}::tail=question of",
+        "code": "rag_block_dangling_end",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 3, "label": "2a", "block": "Commentary"},
+        "content_mode": "prose",
+        "tail": "question of",
+        "snippet": "letter (on the right side), and then focus on the editing and commentary of Benjamin (on the left side). (The quoted material is underlined). Horkheimer admits that the question of"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md::{\"block\": \"Commentary\", \"index\": 8, \"kind\": \"rag_passage\", \"label\": \"3b\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-03-why-forgive__section-b-changing-the-past__pp-341-345.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 8, "label": "3b", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "ing the past as both closed and not-closed. What he fears is that INJUSTICE can be reviewed and dressed up as justice, even as mercy. His point is that the victims (THE SLAIN) cann"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-a-calendars__pp-355-362.md::{\"block\": \"Commentary\", \"index\": 4, \"kind\": \"rag_passage\", \"label\": \"1a\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-a-calendars__pp-355-362.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 4, "label": "1a", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "having previously encountered two sets of witnesses that others rejected but whom Rabban Gamliel, the leader familiar to us from the story of R. Eliezer’s excommunication, accepted"
+      },
+      {
+        "issue_key": "rag_block_dangling_end::rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-b-historiography__pp-362-372.md::{\"block\": \"Commentary\", \"index\": 21, \"kind\": \"rag_passage\", \"label\": \"7a\"}::tail=beginning of",
+        "code": "rag_block_dangling_end",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-b-historiography__pp-362-372.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 21, "label": "7a", "block": "Commentary"},
+        "content_mode": "prose",
+        "tail": "beginning of",
+        "snippet": "t is of interest not only for an ethics about signs, but also for Benjamin’s historiographic effort to reconstrue the signification of things. I begin with the uncited beginning of"
+      },
+      {
+        "issue_key": "rag_block_lowercase_start::rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-c-ruins-and-remnants__pp-372-379.md::{\"block\": \"Commentary\", \"index\": 5, \"kind\": \"rag_passage\", \"label\": \"9b\"}",
+        "code": "rag_block_lowercase_start",
+        "path": "rag/leaf-nodes/robert-gibbs-why-ethics__part-04-repenting-history__chapter-04-why-remember__section-c-ruins-and-remnants__pp-372-379.md",
+        "scope_suggestion": {"kind": "rag_passage", "index": 5, "label": "9b", "block": "Commentary"},
+        "content_mode": "prose",
+        "snippet": "interprets ALLEGORY Benjamin thus through the RUINS in the stage set. If the ruin is the historiography of the baroque, then allegories in thought also map disorder and loss. This "
+      }
+    ]
+  },
+  "retrieval_drift": {
+    "regressed_runs": {
+      "spatial_main_plus_supplement::fielded_bm25": {
+        "baseline_summary": {"mean_reciprocal_rank": 0.98, "hit_at_1": 0.96, "recall_at_3": 1.0},
+        "current_summary": {"mean_reciprocal_rank": 0.96, "hit_at_1": 0.92, "recall_at_3": 1.0},
+        "cases": [
+          {
+            "case_id": "pragmatic-social-logics-table",
+            "probe_id": "table-lexical",
+            "query": "pragmatic social logics table representation cooperation totalization subordination",
+            "tags": ["table", "adversarial", "table-lexical"],
+            "gold": ["body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"],
+            "best_gold_rank": 2,
+            "best_gold_doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md",
+            "top_result_doc_id": "body/part-04-repenting-history/chapter-01-why-repent/c-social-repentance.md",
+            "top_result_is_gold": false,
+            "mrr": 0.5,
+            "hit_at_1": 0.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "score_margin": -2.513541,
+            "top_results": [
+              {"doc_id": "body/part-04-repenting-history/chapter-01-why-repent/c-social-repentance.md", "path": "body part-04-repenting-history chapter-01-why-repent c-social-repentance"},
+              {"doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md", "path": "body part-02-present-judgments chapter-03-why-judge e-unjust-judgment"},
+              {"doc_id": "body/part-02-present-judgments/chapter-03-why-judge/index.md", "path": "body part-02-present-judgments chapter-03-why-judge index"}
+            ]
+          },
+          {
+            "case_id": "pragmatic-social-logics-table",
+            "probe_id": "table-conceptual",
+            "query": "social logics of cooperation totalization and subordination",
+            "tags": ["table", "adversarial", "semantic"],
+            "gold": ["body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"],
+            "best_gold_rank": 2,
+            "best_gold_doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md",
+            "top_result_doc_id": "body/part-04-repenting-history/chapter-01-why-repent/c-social-repentance.md",
+            "top_result_is_gold": false,
+            "mrr": 0.5,
+            "hit_at_1": 0.0,
+            "recall_at_3": 1.0,
+            "recall_at_5": 1.0,
+            "score_margin": -7.09129,
+            "top_results": [
+              {"doc_id": "body/part-04-repenting-history/chapter-01-why-repent/c-social-repentance.md", "path": "body part-04-repenting-history chapter-01-why-repent c-social-repentance"},
+              {"doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md", "path": "body part-02-present-judgments chapter-03-why-judge e-unjust-judgment"},
+              {"doc_id": "body/part-02-present-judgments/chapter-03-why-judge/index.md", "path": "body part-02-present-judgments chapter-03-why-judge index"}
+            ]
+          }
+        ]
+      },
+      "spatial_main_plus_supplement::chargram_tfidf": {
+        "baseline_summary": {"mean_reciprocal_rank": 0.9222, "hit_at_1": 0.92, "recall_at_3": 0.92},
+        "current_summary": {"mean_reciprocal_rank": 0.9221, "hit_at_1": 0.92, "recall_at_3": 0.92},
+        "cases": [
+          {
+            "case_id": "pragmatic-social-logics-table",
+            "probe_id": "table-lexical",
+            "query": "pragmatic social logics table representation cooperation totalization subordination",
+            "tags": ["table", "adversarial", "table-lexical"],
+            "gold": ["body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"],
+            "best_gold_rank": 38,
+            "best_gold_doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md",
+            "top_result_doc_id": "body/part-03-pragmatism-pragmatics-and-method/chapter-01-why-verify/c-pragmatism-and-pragmaticism.md",
+            "top_result_is_gold": false,
+            "mrr": 0.0263,
+            "hit_at_1": 0.0,
+            "recall_at_3": 0.0,
+            "recall_at_5": 0.0,
+            "score_margin": -1.160523,
+            "top_results": [
+              {"doc_id": "body/part-03-pragmatism-pragmatics-and-method/chapter-01-why-verify/c-pragmatism-and-pragmaticism.md", "path": "body part-03-pragmatism-pragmatics-and-method chapter-01-why-verify c-pragmatism-and-pragmaticism"},
+              {"doc_id": "body/part-03-pragmatism-pragmatics-and-method/chapter-02-why-thirds/b-interpretation-and-thirds.md", "path": "body part-03-pragmatism-pragmatics-and-method chapter-02-why-thirds b-interpretation-and-thirds"},
+              {"doc_id": "body/part-03-pragmatism-pragmatics-and-method/chapter-04-why-translate/c-contemporary-translation.md", "path": "body part-03-pragmatism-pragmatics-and-method chapter-04-why-translate c-contemporary-translation"}
+            ]
+          },
+          {
+            "case_id": "pragmatic-social-logics-table",
+            "probe_id": "table-conceptual",
+            "query": "social logics of cooperation totalization and subordination",
+            "tags": ["table", "adversarial", "semantic"],
+            "gold": ["body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md"],
+            "best_gold_rank": 39,
+            "best_gold_doc_id": "body/part-02-present-judgments/chapter-03-why-judge/e-unjust-judgment.md",
+            "top_result_doc_id": "body/part-02-present-judgments/chapter-02-why-mediate/a-communication-and-love.md",
+            "top_result_is_gold": false,
+            "mrr": 0.0256,
+            "hit_at_1": 0.0,
+            "recall_at_3": 0.0,
+            "recall_at_5": 0.0,
+            "score_margin": -1.111106,
+            "top_results": [
+              {"doc_id": "body/part-02-present-judgments/chapter-02-why-mediate/a-communication-and-love.md", "path": "body part-02-present-judgments chapter-02-why-mediate a-communication-and-love"},
+              {"doc_id": "body/part-03-pragmatism-pragmatics-and-method/chapter-02-why-thirds/b-interpretation-and-thirds.md", "path": "body part-03-pragmatism-pragmatics-and-method chapter-02-why-thirds b-interpretation-and-thirds"},
+              {"doc_id": "body/part-01-attending-the-future/chapter-05-why-comment/b-reading-and-separation.md", "path": "body part-01-attending-the-future chapter-05-why-comment b-reading-and-separation"}
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

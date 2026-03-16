@@ -1,0 +1,7 @@
+{
+  "bundle_dir": "/Users/rookslog/Projects/PDFAgentialConversion/generated/why-ethics",
+  "spec": "/Users/rookslog/Projects/PDFAgentialConversion/skills/pdf-to-structured-markdown/references/why-ethics-regressions.json",
+  "failure_count": 0,
+  "pass_count": 21,
+  "failures": []
+}
