@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 ## Current Position
 
 Phase: 07 of 09 (Infrastructure Alignment and Live Pipeline)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-20 -- Roadmap created for v1.1 milestone (phases 07-09)
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-03-20 -- Completed 07-01: dependency pin alignment, SSH timeouts, VRAM probe
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 10%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0 (v1.1); 22 (v1.0)
-- Average duration: --
-- Total execution time: --
+- Total plans completed: 1 (v1.1); 22 (v1.0)
+- Average duration: 4min
+- Total execution time: 4min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 07 | 1 | 4min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: -- (v1.1 not started)
+- Last 5 plans: 4min (07-01)
 - Trend: --
 
 *Updated after each plan completion*
@@ -45,6 +45,9 @@ Progress: [░░░░░░░░░░] 0%
 - [v1.1]: Mac orchestrates via SSH; dionysus is always the remote GPU compute backend.
 - [v1.1]: Embedding and OCR are sequential workstreams (VRAM constraint on 11GB GPU).
 - [v1.1]: GLM-OCR gets its own isolated venv (transformers version conflict is a hard constraint).
+- [07-01]: Dependency pins set to exact dionysus versions (torch==2.9.1, sentence-transformers==5.2.0, transformers==4.51.3, numpy>=1.26.4 floor).
+- [07-01]: SSH timeout tiers: probe=60s, bootstrap=120s, stage=120s, evaluation=600s (CLI configurable).
+- [07-01]: VRAM safety threshold 512 MiB -- dirty VRAM skips model, does not abort backend pipeline.
 
 ### Pending Todos
 
@@ -58,5 +61,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Roadmap created for v1.1 milestone
+Stopped at: Completed 07-01-PLAN.md (infrastructure safety gaps: INFRA-01, INFRA-02, INFRA-03)
 Resume file: None
