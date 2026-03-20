@@ -45,6 +45,10 @@ DEFAULT_TIMEOUT_BOOTSTRAP = 120  # venv creation and pip install
 DEFAULT_TIMEOUT_STAGE = 120      # mkdir, rsync, tar, fetch staging operations
 DEFAULT_TIMEOUT_EVALUATION = 600 # model evaluation (per model, configurable via CLI)
 
+# VRAM safety threshold (MiB): if more than this much VRAM is in use before loading
+# a model, something is wrong (leaked from prior model or another process).
+VRAM_SAFETY_THRESHOLD_MIB = 512
+
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -516,6 +520,65 @@ def build_remote_evaluation_command(
         + "\n"
     )
     return build_ssh_command(backend["ssh_target"], ["bash", "-lc", script])
+
+
+def build_vram_probe_command(ssh_target: str) -> list[str]:
+    """Build an SSH command to query GPU VRAM usage via nvidia-smi."""
+    return build_ssh_command(
+        ssh_target,
+        [
+            "nvidia-smi",
+            "--query-gpu=memory.used,memory.total,memory.free",
+            "--format=csv,noheader,nounits",
+        ],
+    )
+
+
+def parse_vram_probe(runtime: dict[str, Any]) -> dict[str, Any]:
+    """Parse the output of a build_vram_probe_command run_command result.
+
+    Returns a dict with 'available' key. On success:
+        {"available": True, "used_mib": int, "total_mib": int, "free_mib": int,
+         "utilization_pct": float}
+    On failure:
+        {"available": False, "error": str}
+    """
+    if not runtime.get("success"):
+        status = runtime.get("status", "unknown")
+        stderr = runtime.get("stderr", "")
+        return {
+            "available": False,
+            "error": f"nvidia-smi command {status}: {stderr}".strip(),
+        }
+    stdout = str(runtime.get("stdout") or "").strip()
+    if not stdout:
+        return {"available": False, "error": "nvidia-smi returned empty output"}
+    try:
+        # nvidia-smi CSV output: "used_mib, total_mib, free_mib" (one GPU per line;
+        # we read the first line for single-GPU hosts like dionysus GTX 1080 Ti)
+        first_line = stdout.splitlines()[0].strip()
+        parts = [p.strip() for p in first_line.split(",")]
+        if len(parts) != 3:
+            return {
+                "available": False,
+                "error": f"Unexpected nvidia-smi output format: {first_line!r}",
+            }
+        used_mib = int(parts[0])
+        total_mib = int(parts[1])
+        free_mib = int(parts[2])
+        utilization_pct = round(used_mib / total_mib * 100, 2) if total_mib > 0 else 0.0
+        return {
+            "available": True,
+            "used_mib": used_mib,
+            "total_mib": total_mib,
+            "free_mib": free_mib,
+            "utilization_pct": utilization_pct,
+        }
+    except (ValueError, IndexError) as exc:
+        return {
+            "available": False,
+            "error": f"Failed to parse nvidia-smi output: {exc}",
+        }
 
 
 def run_command(
@@ -1171,6 +1234,55 @@ def main(argv: list[str] | None = None) -> int:
             local_sync_dir.mkdir(parents=True, exist_ok=True)
 
             if backend_failure_stage is None:
+                # INFRA-03: VRAM probe before each model evaluation to detect leaked VRAM
+                # from prior model processes. Each evaluation is a separate SSH subprocess;
+                # VRAM should be free after process exit. This guard catches failures.
+                if not args.dry_run:
+                    vram_probe_runtime = run_command(
+                        build_vram_probe_command(backend["ssh_target"]),
+                        timeout=DEFAULT_TIMEOUT_PROBE,
+                    )
+                    vram_state = parse_vram_probe(vram_probe_runtime)
+                    backend_shared_runtime[f"model_{model_slug}_vram_pre"] = vram_state
+                    dump_json(model_local_dir / "vram-pre.json", vram_state)
+                    if vram_state.get("available") and vram_state["used_mib"] > VRAM_SAFETY_THRESHOLD_MIB:
+                        # VRAM is dirty beyond the safety threshold -- skip this model.
+                        # Do NOT abort the entire backend; later models may succeed if
+                        # this is transient (another process, not a leaked evaluator).
+                        failure_stage = "vram_dirty"
+                        dump_json(
+                            model_local_dir / "runtime.json",
+                            {
+                                "status": "skipped",
+                                "failure_stage": "vram_dirty",
+                                "vram_pre": vram_state,
+                            },
+                        )
+                        result = {
+                            "backend_id": backend["id"],
+                            "backend_label": backend["label"],
+                            "model_name": model_name,
+                            "model_slug": model_slug,
+                            "status": "failure",
+                            "success": False,
+                            "failure_stage": failure_stage,
+                            "device_used": None,
+                            "runtime_seconds": None,
+                            "aggregate_metrics": {
+                                "run_count": 0,
+                                "mean_twin_cosine": None,
+                                "twin_hit_at_1": None,
+                                "twin_mean_reciprocal_rank": None,
+                                "runs": {},
+                            },
+                            "deltas_vs_baseline": None,
+                            "manifest_hash_match": None,
+                            "artifacts_dir": str(model_local_dir),
+                            "commands": commands,
+                        }
+                        report["results"].append(result)
+                        continue
+
                 mkdir_runtime = run_command(
                     build_remote_mkdir_command(backend["ssh_target"], model_paths["remote_model_dir"]),
                     dry_run=args.dry_run,

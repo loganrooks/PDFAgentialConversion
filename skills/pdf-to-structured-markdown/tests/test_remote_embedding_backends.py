@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import io
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -394,6 +395,107 @@ class RemoteEmbeddingBackendTests(unittest.TestCase):
                 payload["representation_summary_by_run"]["semantic_flat_clean::body"]["mean_twin_cosine"],
                 0.0,
             )
+
+
+class VramProbeTests(unittest.TestCase):
+    """Tests for VRAM probe helpers (INFRA-03)."""
+
+    def test_parse_vram_probe_valid_csv_output(self) -> None:
+        """parse_vram_probe correctly parses well-formed nvidia-smi CSV output."""
+        runtime = {
+            "success": True,
+            "status": "success",
+            "stdout": "256, 11264, 11008\n",
+            "stderr": "",
+        }
+        result = compare_embedding_backends.parse_vram_probe(runtime)
+        self.assertTrue(result["available"])
+        self.assertEqual(result["used_mib"], 256)
+        self.assertEqual(result["total_mib"], 11264)
+        self.assertEqual(result["free_mib"], 11008)
+        self.assertAlmostEqual(result["utilization_pct"], round(256 / 11264 * 100, 2), places=2)
+
+    def test_parse_vram_probe_empty_output_returns_unavailable(self) -> None:
+        """parse_vram_probe returns available=False when stdout is empty."""
+        runtime = {
+            "success": True,
+            "status": "success",
+            "stdout": "",
+            "stderr": "",
+        }
+        result = compare_embedding_backends.parse_vram_probe(runtime)
+        self.assertFalse(result["available"])
+        self.assertIn("error", result)
+
+    def test_parse_vram_probe_garbage_output_returns_unavailable(self) -> None:
+        """parse_vram_probe returns available=False when output cannot be parsed."""
+        runtime = {
+            "success": True,
+            "status": "success",
+            "stdout": "not,a,valid,gpu,line,at,all\n",
+            "stderr": "",
+        }
+        result = compare_embedding_backends.parse_vram_probe(runtime)
+        self.assertFalse(result["available"])
+        self.assertIn("error", result)
+
+    def test_parse_vram_probe_failed_command_returns_unavailable(self) -> None:
+        """parse_vram_probe returns available=False when the command failed."""
+        runtime = {
+            "success": False,
+            "status": "failure",
+            "stdout": "",
+            "stderr": "nvidia-smi: command not found",
+        }
+        result = compare_embedding_backends.parse_vram_probe(runtime)
+        self.assertFalse(result["available"])
+        self.assertIn("error", result)
+
+    def test_build_vram_probe_command_produces_valid_ssh_command(self) -> None:
+        """build_vram_probe_command returns a well-formed SSH command."""
+        cmd = compare_embedding_backends.build_vram_probe_command("rookslog@dionysus")
+        self.assertEqual(cmd[0], "ssh")
+        self.assertEqual(cmd[1], "rookslog@dionysus")
+        self.assertIn("nvidia-smi", cmd)
+        self.assertTrue(any("memory.used" in arg for arg in cmd))
+        self.assertTrue(any("csv" in arg for arg in cmd))
+
+
+class RunCommandTimeoutTests(unittest.TestCase):
+    """Tests for run_command timeout behavior (INFRA-02)."""
+
+    def test_run_command_timeout_returns_structured_error(self) -> None:
+        """When subprocess times out, run_command returns status='timeout' dict."""
+        with mock.patch("subprocess.run", side_effect=subprocess.TimeoutExpired(cmd=["sleep", "999"], timeout=1)):
+            result = compare_embedding_backends.run_command(["sleep", "999"], timeout=1)
+        self.assertFalse(result["success"])
+        self.assertEqual(result["status"], "timeout")
+        self.assertIsNone(result["exit_code"])
+        self.assertIn("timed out", result["stderr"])
+        self.assertIn("1s", result["stderr"])
+        self.assertIsInstance(result["wall_clock_seconds"], float)
+
+    def test_run_command_timeout_none_works_as_before(self) -> None:
+        """run_command with timeout=None executes successfully (backward compatibility)."""
+        result = compare_embedding_backends.run_command(["echo", "backward-compat"], timeout=None)
+        self.assertTrue(result["success"])
+        self.assertEqual(result["status"], "success")
+        self.assertIn("backward-compat", result["stdout"])
+
+    def test_parse_json_stdout_handles_timeout_status(self) -> None:
+        """parse_json_stdout treats timeout runtime as a distinct status (not failure)."""
+        timeout_runtime = {
+            "status": "timeout",
+            "success": False,
+            "exit_code": None,
+            "stdout": "",
+            "stderr": "Command timed out after 60s",
+            "wall_clock_seconds": 60.1,
+        }
+        result = compare_embedding_backends.parse_json_stdout(timeout_runtime, label="pre_probe")
+        self.assertEqual(result["status"], "timeout")
+        self.assertIsNone(result["payload"])
+        self.assertEqual(result["label"], "pre_probe")
 
 
 if __name__ == "__main__":
