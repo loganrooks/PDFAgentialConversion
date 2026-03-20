@@ -48,9 +48,10 @@ class FakeTorchModule:
 
 
 class FakeSentenceTransformerModel:
-    def __init__(self, model_name: str, device: str) -> None:
+    def __init__(self, model_name: str, device: str, trust_remote_code: bool = False) -> None:
         self.model_name = model_name
         self.device = device
+        self.trust_remote_code = trust_remote_code
 
     def encode(
         self,
@@ -496,6 +497,128 @@ class RunCommandTimeoutTests(unittest.TestCase):
         self.assertEqual(result["status"], "timeout")
         self.assertIsNone(result["payload"])
         self.assertEqual(result["label"], "pre_probe")
+
+
+class TrustRemoteCodeTests(unittest.TestCase):
+    """Tests for trust_remote_code threading (EMBED-04)."""
+
+    def _minimal_backend(self) -> dict:
+        return {
+            "id": "fake-gpu-host",
+            "label": "Fake GPU Host",
+            "transport": "ssh",
+            "ssh_target": "fake-host",
+            "remote_root": "/remote/pdfmd",
+            "python_bin": "python3",
+            "venv_dir": "venv",
+            "device": "cuda",
+            "bootstrap_mode": "ssh_venv",
+            "models": ["BAAI/bge-small-en-v1.5"],
+            "model_config": {},
+        }
+
+    def _minimal_args(self) -> SimpleNamespace:
+        return SimpleNamespace(
+            reference_corpus="rag_linearized",
+            corpora="rag_linearized",
+            views="body",
+            top_k=5,
+            neighbor_k=5,
+            dense_char_limit=1600,
+            batch_size=32,
+        )
+
+    def test_build_remote_evaluation_command_with_trust_remote_code_includes_flag(self) -> None:
+        """build_remote_evaluation_command with trust_remote_code=True appends --trust-remote-code."""
+        backend = self._minimal_backend()
+        args = self._minimal_args()
+        cmd = compare_embedding_backends.build_remote_evaluation_command(
+            backend,
+            remote_backend_root="/remote/pdfmd/run-01/fake-gpu-host",
+            model_name="BAAI/bge-small-en-v1.5",
+            model_slug="baai-bge-small-en-v1-5",
+            args=args,
+            trust_remote_code=True,
+        )
+        # The SSH command wraps a bash script; join to search the full string
+        full_cmd = " ".join(cmd)
+        self.assertIn("--trust-remote-code", full_cmd)
+
+    def test_build_remote_evaluation_command_without_trust_remote_code_excludes_flag(self) -> None:
+        """build_remote_evaluation_command with trust_remote_code=False (default) omits the flag."""
+        backend = self._minimal_backend()
+        args = self._minimal_args()
+        cmd = compare_embedding_backends.build_remote_evaluation_command(
+            backend,
+            remote_backend_root="/remote/pdfmd/run-01/fake-gpu-host",
+            model_name="BAAI/bge-small-en-v1.5",
+            model_slug="baai-bge-small-en-v1-5",
+            args=args,
+            trust_remote_code=False,
+        )
+        full_cmd = " ".join(cmd)
+        self.assertNotIn("--trust-remote-code", full_cmd)
+
+    def test_validate_backend_entry_passes_with_model_config_present(self) -> None:
+        """validate_backend_entry accepts and passes through a model_config dict."""
+        entry = {
+            "id": "fake-gpu-host",
+            "label": "Fake GPU Host",
+            "transport": "ssh",
+            "ssh_target": "fake-host",
+            "remote_root": "/remote/pdfmd",
+            "python_bin": "python3",
+            "venv_dir": "venv",
+            "device": "cuda",
+            "bootstrap_mode": "ssh_venv",
+            "models": ["BAAI/bge-small-en-v1.5"],
+            "model_config": {"nomic-ai/nomic-embed-text-v1.5": {"trust_remote_code": True}},
+        }
+        result = compare_embedding_backends.validate_backend_entry(entry)
+        self.assertIn("model_config", result)
+        self.assertEqual(
+            result["model_config"]["nomic-ai/nomic-embed-text-v1.5"]["trust_remote_code"], True
+        )
+
+    def test_validate_backend_entry_passes_without_model_config(self) -> None:
+        """validate_backend_entry accepts entries with no model_config (defaults to empty dict)."""
+        entry = {
+            "id": "fake-gpu-host",
+            "label": "Fake GPU Host",
+            "transport": "ssh",
+            "ssh_target": "fake-host",
+            "remote_root": "/remote/pdfmd",
+            "python_bin": "python3",
+            "venv_dir": "venv",
+            "device": "cuda",
+            "bootstrap_mode": "ssh_venv",
+            "models": ["BAAI/bge-small-en-v1.5"],
+        }
+        result = compare_embedding_backends.validate_backend_entry(entry)
+        self.assertIn("model_config", result)
+        self.assertEqual(result["model_config"], {})
+
+    def test_parse_args_recognizes_trust_remote_code_flag(self) -> None:
+        """evaluate_embedding_space.parse_args accepts --trust-remote-code as a store_true flag."""
+        args = evaluate_embedding_space.parse_args(
+            [
+                "/tmp/bundle",
+                "/tmp/benchmark.json",
+                "--embedding-backend",
+                "sentence_transformers",
+                "--model-name",
+                "nomic-ai/nomic-embed-text-v1.5",
+                "--trust-remote-code",
+            ]
+        )
+        self.assertTrue(args.trust_remote_code)
+
+    def test_parse_args_trust_remote_code_defaults_to_false(self) -> None:
+        """evaluate_embedding_space.parse_args defaults trust_remote_code to False."""
+        args = evaluate_embedding_space.parse_args(
+            ["/tmp/bundle", "/tmp/benchmark.json"]
+        )
+        self.assertFalse(args.trust_remote_code)
 
 
 if __name__ == "__main__":

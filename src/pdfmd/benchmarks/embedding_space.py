@@ -152,6 +152,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=DEFAULT_SENTENCE_TRANSFORMERS_BATCH_SIZE,
         help="Batch size for sentence-transformers backends.",
     )
+    parser.add_argument(
+        "--trust-remote-code",
+        action="store_true",
+        help=(
+            "Pass trust_remote_code=True to SentenceTransformer. Required for models "
+            "that use custom code (e.g., nomic-embed). Off by default."
+        ),
+    )
     return parser.parse_args(argv)
 
 
@@ -661,6 +669,7 @@ def load_embeddings_sentence_transformers(
     model_name: str,
     requested_device: str,
     batch_size: int,
+    trust_remote_code: bool = False,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     if not model_name:
         raise ValueError("--model-name is required when --embedding-backend=sentence_transformers")
@@ -674,7 +683,9 @@ def load_embeddings_sentence_transformers(
 
     resolved_device, gpu_probe = resolve_sentence_transformers_device(requested_device, torch_module)
     started = time.monotonic()
-    model = sentence_transformers_module.SentenceTransformer(model_name, device=resolved_device)
+    model = sentence_transformers_module.SentenceTransformer(
+        model_name, device=resolved_device, trust_remote_code=trust_remote_code
+    )
     texts = [item["text"] for item in items]
     embeddings = model.encode(
         texts,
@@ -738,6 +749,7 @@ def load_embeddings_for_backend(
             model_name=args.model_name,
             requested_device=args.device,
             batch_size=args.batch_size,
+            trust_remote_code=getattr(args, "trust_remote_code", False),
         )
     raise ValueError(f"Unsupported embedding backend: {args.embedding_backend}")
 

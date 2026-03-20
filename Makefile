@@ -36,7 +36,7 @@ smoke:
 	$(PYTHON) $(SCRIPTS_DIR)/run_challenge_corpus.py $(CHALLENGE_CONFIG) --skip-convert $(SMOKE_ARGS)
 
 compare-backends:
-	$(PYTHON) $(SCRIPTS_DIR)/compare_embedding_backends.py $(WHY_ETHICS_BUNDLE) $(BENCHMARK_JSON) --dry-run $(COMPARE_BACKENDS_ARGS)
+	$(PYTHON) $(SCRIPTS_DIR)/compare_embedding_backends.py $(WHY_ETHICS_BUNDLE) $(BENCHMARK_JSON) $(COMPARE_BACKENDS_ARGS)
 
 map:
 	@if command -v codex >/dev/null 2>&1; then \

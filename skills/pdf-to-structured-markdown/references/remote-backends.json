@@ -14,7 +14,10 @@
         "BAAI/bge-small-en-v1.5",
         "BAAI/bge-base-en-v1.5",
         "intfloat/e5-base-v2"
-      ]
+      ],
+      "model_config": {
+        "nomic-ai/nomic-embed-text-v1.5": {"trust_remote_code": true}
+      }
     }
   ]
 }

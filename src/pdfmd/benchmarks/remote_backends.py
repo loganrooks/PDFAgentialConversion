@@ -236,6 +236,11 @@ def validate_backend_entry(entry: dict[str, Any]) -> dict[str, Any]:
     models = entry["models"]
     if not isinstance(models, list) or not models:
         raise ValueError(f"Backend {entry['id']} must declare at least one model.")
+    model_config = entry.get("model_config", {})
+    if not isinstance(model_config, dict):
+        raise ValueError(
+            f"Backend {entry['id']} model_config must be a dict mapping model names to settings."
+        )
     return {
         "id": str(entry["id"]),
         "label": str(entry["label"]),
@@ -247,6 +252,7 @@ def validate_backend_entry(entry: dict[str, Any]) -> dict[str, Any]:
         "device": str(entry["device"]),
         "bootstrap_mode": "ssh_venv",
         "models": [str(item) for item in models],
+        "model_config": model_config,
     }
 
 
@@ -479,6 +485,7 @@ def build_remote_evaluation_command(
     model_name: str,
     model_slug: str,
     args: argparse.Namespace,
+    trust_remote_code: bool = False,
 ) -> list[str]:
     evaluator = f"{remote_backend_root}/evaluate_embedding_space.py"
     bundle_dir = f"{remote_backend_root}/bundle"
@@ -510,6 +517,10 @@ def build_remote_evaluation_command(
         shlex.quote(backend["device"]),
         "--batch-size",
         str(args.batch_size),
+    ]
+    if trust_remote_code:
+        command.append("--trust-remote-code")
+    command += [
         ">",
         shlex.quote(f"{model_dir}/evaluation.json"),
     ]
@@ -1199,6 +1210,7 @@ def main(argv: list[str] | None = None) -> int:
                     model_name=model_name,
                     model_slug=model_slug,
                     args=args,
+                    trust_remote_code=backend.get("model_config", {}).get(model_name, {}).get("trust_remote_code", False),
                 ),
                 "tar": build_remote_artifact_tar_command(
                     backend["ssh_target"],
