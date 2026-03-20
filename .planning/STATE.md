@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 ## Current Position
 
 Phase: 07 of 09 (Infrastructure Alignment and Live Pipeline)
-Plan: 1 of TBD in current phase
-Status: In progress
-Last activity: 2026-03-20 -- Completed 07-01: dependency pin alignment, SSH timeouts, VRAM probe
+Plan: 2 of 2 in current phase
+Status: Awaiting human checkpoint (07-02 Task 2: live pipeline smoke test)
+Last activity: 2026-03-20 -- Completed 07-02 Task 1: trust_remote_code support, live Makefile
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
@@ -27,10 +27,10 @@ Progress: [█░░░░░░░░░] 10%
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 07 | 1 | 4min | 4min |
+| 07 | 2 | 7min | 3.5min |
 
 **Recent Trend:**
-- Last 5 plans: 4min (07-01)
+- Last 5 plans: 4min (07-01), 3min (07-02)
 - Trend: --
 
 *Updated after each plan completion*
@@ -48,6 +48,8 @@ Progress: [█░░░░░░░░░] 10%
 - [07-01]: Dependency pins set to exact dionysus versions (torch==2.9.1, sentence-transformers==5.2.0, transformers==4.51.3, numpy>=1.26.4 floor).
 - [07-01]: SSH timeout tiers: probe=60s, bootstrap=120s, stage=120s, evaluation=600s (CLI configurable).
 - [07-01]: VRAM safety threshold 512 MiB -- dirty VRAM skips model, does not abort backend pipeline.
+- [Phase 07]: Per-model trust_remote_code config: opt-in via model_config dict in remote-backends.json, not a global flag
+- [Phase 07]: Makefile compare-backends runs live by default; dry-run available via COMPARE_BACKENDS_ARGS='--dry-run'
 
 ### Pending Todos
 
@@ -61,5 +63,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Completed 07-01-PLAN.md (infrastructure safety gaps: INFRA-01, INFRA-02, INFRA-03)
+Stopped at: Awaiting human-verify checkpoint for 07-02 Task 2 (live pipeline smoke test on dionysus)
 Resume file: None
