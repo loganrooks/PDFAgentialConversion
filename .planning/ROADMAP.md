@@ -3,7 +3,7 @@
 ## Milestones
 
 - [v1.0 Foundation, Visibility, and Gate Recovery](.planning/milestones/v1.0-ROADMAP.md) -- Phases 01-06, shipped 2026-03-16
-- **v1.1 Remote Evaluation & Extraction Exploration** -- Phases 07-09 (in progress)
+- **v1.1 Remote Evaluation & Extraction Exploration** -- Phases 07-10 (in progress)
 
 ## v1.1 Remote Evaluation & Extraction Exploration
 
@@ -13,9 +13,10 @@ This milestone turns the SSH-orchestrated embedding evaluation pipeline from dry
 
 ### Phases
 
-- [ ] **Phase 07: Infrastructure Alignment and Live Pipeline** - Fix foundation gaps and prove the pipeline works end-to-end with live GPU metrics
+- [x] **Phase 07: Infrastructure Alignment and Live Pipeline** - Fix foundation gaps and prove the pipeline works end-to-end with live GPU metrics
 - [ ] **Phase 08: Expanded Embedding Evaluation** - Run all 8 models and select the best non-Apple backend for scholarly retrieval
 - [ ] **Phase 09: GLM-OCR Exploration** - Evaluate vision-language extraction on representative scholarly pages
+- [ ] **Phase 10: Inference Optimization** - Optimize the selected embedding model for speed while preserving retrieval quality
 
 ### Phase Details
 
@@ -41,8 +42,8 @@ Plans:
 **Requirements**: EMBED-02, EMBED-03, EMBED-05, EMBED-06, RPT-01
 **Success Criteria** (what must be TRUE):
   1. All 8 models (bge-small, bge-base, e5-base, bge-large, gte-large, nomic-embed, bge-m3, plus one additional from research roster) run to completion without OOM, each with its own batch size configuration
-  2. Each model produces an evaluation.json containing twin cosine, hit@1, and MRR metrics across all corpus-view pairs
-  3. `choose_winner` selects a best non-Apple backend from the real 8-model metric payloads and the selection is explainable from the data
+  2. Each model produces an evaluation.json containing twin cosine, hit@1, MRR metrics, and inference time across all corpus-view pairs
+  3. `choose_winner` selects a best non-Apple backend from the real 8-model metric payloads (quality and speed) and the selection is explainable from the data
   4. Historical comparison aggregator can read multiple comparison-summary.json files and show whether model rankings are stable across runs
 **Plans**: TBD
 
@@ -66,10 +67,25 @@ Plans:
 - [ ] 09-01: TBD
 - [ ] 09-02: TBD
 
+#### Phase 10: Inference Optimization
+**Goal**: The selected embedding model runs at optimal speed on the GTX 1080 Ti while maintaining retrieval quality within a defined tolerance
+**Depends on**: Phase 08 (model selection must be complete first)
+**Requirements**: OPT-01, OPT-02
+**Success Criteria** (what must be TRUE):
+  1. At least one optimization technique (quantization, ONNX runtime, batch tuning, or other) produces a measurable speedup over the Phase 08 baseline
+  2. Optimized model's retrieval quality (twin cosine, hit@1, MRR) remains within a defined tolerance of the unoptimized baseline (e.g., <1% degradation)
+  3. Optimization is reproducible and documented — operator can rebuild the optimized model from instructions
+**Plans**: TBD
+
+Plans:
+- [ ] 10-01: TBD
+- [ ] 10-02: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 07. Infrastructure Alignment and Live Pipeline | v1.1 | 0/2 | In progress | - |
+| 07. Infrastructure Alignment and Live Pipeline | v1.1 | 2/2 | Complete | 2026-03-20 |
 | 08. Expanded Embedding Evaluation | v1.1 | 0/TBD | Not started | - |
 | 09. GLM-OCR Exploration | v1.1 | 0/TBD | Not started | - |
+| 10. Inference Optimization | v1.1 | 0/TBD | Not started | - |
