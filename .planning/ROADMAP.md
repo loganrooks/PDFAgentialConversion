@@ -29,12 +29,11 @@ This milestone turns the SSH-orchestrated embedding evaluation pipeline from dry
   3. A deliberately hung or slow remote command times out and returns a clear error to the Mac orchestrator instead of blocking indefinitely
   4. VRAM state is checked between model evaluations and a model will not load if prior VRAM is not released
   5. Models requiring `trust_remote_code=True` (nomic-embed, stella) load successfully through the evaluation pipeline
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 07-01: TBD
-- [ ] 07-02: TBD
-- [ ] 07-03: TBD
+- [ ] 07-01-PLAN.md -- Align dependency pins, add SSH timeouts, add VRAM probes (INFRA-01, INFRA-02, INFRA-03)
+- [ ] 07-02-PLAN.md -- Add trust_remote_code support and enable live pipeline execution (EMBED-04, EMBED-01)
 
 #### Phase 08: Expanded Embedding Evaluation
 **Goal**: Operator has a full 8-model comparison matrix with real retrieval metrics that informs which non-Apple backend to use for dionysus-hosted RAG
@@ -71,6 +70,6 @@ Plans:
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 07. Infrastructure Alignment and Live Pipeline | v1.1 | 0/TBD | Not started | - |
+| 07. Infrastructure Alignment and Live Pipeline | v1.1 | 0/2 | In progress | - |
 | 08. Expanded Embedding Evaluation | v1.1 | 0/TBD | Not started | - |
 | 09. GLM-OCR Exploration | v1.1 | 0/TBD | Not started | - |
