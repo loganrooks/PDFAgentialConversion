@@ -1,110 +1,108 @@
 ---
 phase: 07-infrastructure-alignment-and-live-pipeline
 plan: 02
-model: claude-sonnet-4-6
-context_used_pct: 35
+model: claude-opus-4-6
+context_used_pct: 65
 subsystem: remote-embedding-pipeline
-tags: trust_remote_code, sentence-transformers, ssh, makefile, nomic-embed, pipeline-live
+tags: trust-remote-code, live-pipeline, ssh-quoting, cuda, vram, makefile
 requires:
   - phase: 07-01
-    provides: timeout tiers, VRAM probe, dependency pins — safe foundation for live pipeline
+    provides: SSH timeouts, VRAM probes, aligned dependency pins
 provides:
-  - trust_remote_code support per-model via remote-backends.json config (EMBED-04)
-  - Live Makefile compare-backends target (EMBED-01)
-  - --trust-remote-code CLI flag in evaluate_embedding_space.py
-  - 6 new unit tests covering trust_remote_code threading and config validation
+  - trust_remote_code support through full evaluation path (EMBED-04)
+  - Live pipeline execution via Makefile (EMBED-01)
+  - Verified end-to-end GPU metrics from all 3 models on dionysus
 affects:
-  - Phase 08 (nomic-embed-text-v1.5 can now be added to models list and will load correctly)
-  - Operator workflow (compare-backends runs live by default; no --dry-run needed)
+  - Phase 08 (expanded embedding evaluation can now run live)
+  - Phase 09 (GLM-OCR exploration benefits from proven remote execution path)
 tech-stack:
   added: []
   patterns:
-    - "Per-model config: model_config dict in backend JSON maps model names to settings"
-    - "trust_remote_code threading: JSON config -> validate_backend_entry -> build_remote_evaluation_command -> SSH CLI -> SentenceTransformer"
-    - "Opt-in flag pattern: trust_remote_code=False default, only enabled for models that need it"
+    - "Per-model config: model_config dict in remote-backends.json for opt-in flags"
+    - "SSH command quoting: shlex.join() for multi-line bash -lc scripts"
+    - "Defense-in-depth JSON parsing: extract last JSON object from noisy stdout"
+    - "Self-contained remote evaluator: rsync embedding_space.py directly (no pdfmd package needed)"
 key-files:
   created: []
   modified:
-    - skills/pdf-to-structured-markdown/references/remote-backends.json
     - src/pdfmd/benchmarks/remote_backends.py
     - src/pdfmd/benchmarks/embedding_space.py
-    - Makefile
+    - skills/pdf-to-structured-markdown/references/remote-backends.json
+    - skills/pdf-to-structured-markdown/references/remote-embedding-requirements.txt
     - skills/pdf-to-structured-markdown/tests/test_remote_embedding_backends.py
-key-decisions:
-  - "Per-model config (not global flag): trust_remote_code is opt-in per model name in model_config dict"
-  - "Makefile live by default: --dry-run removed from compare-backends; operators use COMPARE_BACKENDS_ARGS='--dry-run' to get dry-run"
-  - "nomic-embed schema deferred: model_config entry for nomic established but model not added to models list until Phase 08"
-patterns-established:
-  - "Per-model config threading: backend JSON -> validate -> pipeline loop -> SSH command builder -> remote CLI"
-duration: 3min
-completed: 2026-03-20
+    - Makefile
 ---
 
-# Phase 07 Plan 02: trust_remote_code Support and Live Pipeline Summary
+## Objective
 
-**trust_remote_code support threaded from per-model JSON config through SSH evaluation command to SentenceTransformer constructor; compare-backends Makefile target now runs live by default.**
+Add trust_remote_code support for models that need it (EMBED-04) and enable live pipeline execution by removing the --dry-run default from the Makefile (EMBED-01). Verify with a live smoke test against dionysus.
 
-## Performance
-- **Duration:** 3 minutes
-- **Tasks:** 1 of 2 completed (Task 2 is a human-verify checkpoint)
-- **Files modified:** 5
+## What Changed
 
-## Accomplishments
-- Added optional `model_config` field to `remote-backends.json` backend entries; schema supports per-model settings with `nomic-ai/nomic-embed-text-v1.5` as the initial example (trust_remote_code=true)
-- Updated `validate_backend_entry()` to validate and pass through `model_config` dict into the pipeline (critical: the function constructs an explicit return dict so model_config had to be explicitly included)
-- Added `trust_remote_code: bool = False` parameter to `build_remote_evaluation_command()`; when True, appends `--trust-remote-code` to the SSH evaluation CLI before the `>` redirect
-- Main pipeline loop now looks up per-model trust_remote_code from `backend.model_config.get(model_name, {}).get("trust_remote_code", False)` and passes it through
-- Added `--trust-remote-code` as a `store_true` CLI argument in `embedding_space.py parse_args()`
-- Added `trust_remote_code: bool = False` parameter to `load_embeddings_sentence_transformers()` and passed it to `SentenceTransformer(model_name, device=resolved_device, trust_remote_code=trust_remote_code)`
-- Removed `--dry-run` from `compare-backends` Makefile target; operators who want dry-run use `make compare-backends COMPARE_BACKENDS_ARGS='--dry-run'`
-- Added 6 new `TrustRemoteCodeTests` covering: command includes flag when True, excludes when False, validate_backend_entry with/without model_config, parse_args recognizes flag, default is False
+### Task 1: trust_remote_code + Live Pipeline Enablement
 
-## Task Commits
-1. **Task 1: Add trust_remote_code support and enable live pipeline execution** - `1707585`
-2. **Task 2: Verify live pipeline execution on dionysus** - awaiting human checkpoint
+**EMBED-04 (trust_remote_code):**
+- `remote-backends.json`: Added optional `model_config` dict for per-model settings (e.g., `"trust_remote_code": true` for nomic-embed)
+- `validate_backend_entry()`: Accepts and passes through `model_config` field
+- `build_remote_evaluation_command()`: New `trust_remote_code` param appends `--trust-remote-code` to SSH command
+- `embedding_space.py`: `--trust-remote-code` CLI arg, wired through to `SentenceTransformer(trust_remote_code=True)`
+- Pipeline loop: Reads per-model config and threads through to evaluation command
+- 6 new tests covering trust_remote_code threading and config validation
 
-## Files Created/Modified
-- `skills/pdf-to-structured-markdown/references/remote-backends.json` - Added `model_config` field with nomic-embed schema example (EMBED-04)
-- `src/pdfmd/benchmarks/remote_backends.py` - validate_backend_entry passes model_config; build_remote_evaluation_command accepts trust_remote_code; pipeline loop looks up per-model trust_remote_code (EMBED-04)
-- `src/pdfmd/benchmarks/embedding_space.py` - --trust-remote-code CLI arg; load_embeddings_sentence_transformers accepts trust_remote_code; SentenceTransformer constructor receives it (EMBED-04)
-- `Makefile` - Removed --dry-run from compare-backends target (EMBED-01)
-- `skills/pdf-to-structured-markdown/tests/test_remote_embedding_backends.py` - 6 new TrustRemoteCodeTests; fixed FakeSentenceTransformerModel to accept trust_remote_code kwarg
+**EMBED-01 (live pipeline):**
+- Makefile `compare-backends` target: Removed `--dry-run` default; operators use `COMPARE_BACKENDS_ARGS='--dry-run'` when needed
 
-## Decisions & Deviations
+### Bugfixes Discovered During Live Verification
 
-### Decision: Per-model config (not global flag)
-trust_remote_code is opt-in per model via the `model_config` dict rather than a global flag. Only specific models (e.g., nomic-embed) need it; always-on would be unnecessarily permissive.
+Five bugs were invisible during dry-run mode and only surfaced during the first live execution:
 
-### Auto-fix Deviation: FakeSentenceTransformerModel missing trust_remote_code kwarg
-**[Rule 1 - Bug] Fixed FakeSentenceTransformerModel to accept trust_remote_code kwarg**
-- **Found during:** Task 1 test run
-- **Issue:** `FakeSentenceTransformerModel.__init__()` did not accept `trust_remote_code` keyword argument, causing `test_sentence_transformers_cpu_smoke_on_tiny_fixture_bundle` to fail with TypeError after the SentenceTransformer constructor change
-- **Fix:** Added `trust_remote_code: bool = False` to FakeSentenceTransformerModel.__init__ signature
-- **Files modified:** `skills/pdf-to-structured-markdown/tests/test_remote_embedding_backends.py`
-- **Commit:** 1707585 (included in same task commit)
+1. **SSH command quoting** (`build_ssh_command`): SSH concatenates remote args with spaces, breaking `bash -lc` scripts. The script was truncated at the first space, executing just `set` (dumping env vars) instead of the full script. Fix: `shlex.join()` to produce a single properly-quoted string.
 
-### Pre-existing failures (not caused by this plan)
-2 tests (`test_hash_helpers_and_manifest_capture_input_identity`, `test_compare_harness_dry_run_writes_summary_and_manifests`) fail with `FileNotFoundError` because `PROJECT_ROOT` is hardcoded to a Mac path. Confirmed pre-existing in 07-01 and again verified via `git stash`.
+2. **CUDA torch index URL** (`remote-embedding-requirements.txt`): `pip install torch==2.9.1` from PyPI installs CPU-only. Added `--extra-index-url https://download.pytorch.org/whl/cu126` for CUDA-linked wheel (GTX 1080 Ti uses sm_60 architecture, supported in cu126 builds).
 
-## User Setup Required
-**Task 2 requires human verification.** Run the live pipeline smoke test:
-```bash
-make compare-backends COMPARE_BACKENDS_ARGS='--backend-ids dionysus'
-```
-Verify `comparison-summary.json` has `dry_run: false` and at least one result with real aggregate_metrics. Report result back to resume agent.
+3. **Bootstrap timeout**: `DEFAULT_TIMEOUT_BOOTSTRAP` was 120s, insufficient for downloading the ~2GB torch CUDA wheel on first run. Raised to 600s.
 
-## Next Phase Readiness
-After human verification of Task 2, Phase 07 is complete. Phase 08 can proceed with:
-- Adding `nomic-ai/nomic-embed-text-v1.5` to the `models` list in remote-backends.json (model_config schema already in place)
-- Full live pipeline is operational and human-verified
+4. **VRAM threshold**: `VRAM_SAFETY_THRESHOLD_MIB` was 512, but GTX 1080 Ti uses ~580 MiB at idle for display driver. Raised to 1024 MiB.
 
-## Self-Check: PASSED
+5. **Remote evaluator import**: Pipeline rsynced the thin wrapper script (`scripts/evaluate_embedding_space.py`) which uses `sys.path` to find the `pdfmd` package — not available on the remote venv. Fix: rsync the self-contained `src/pdfmd/benchmarks/embedding_space.py` directly (no pdfmd imports needed).
 
-- FOUND: Makefile (no --dry-run in compare-backends)
-- FOUND: remote-backends.json (model_config schema present)
-- FOUND: remote_backends.py (trust_remote_code in validate_backend_entry, build_remote_evaluation_command, pipeline loop)
-- FOUND: embedding_space.py (--trust-remote-code arg, trust_remote_code parameter, SentenceTransformer call)
-- FOUND: test_remote_embedding_backends.py (TrustRemoteCodeTests class with 6 tests)
-- FOUND commit: 1707585 (Task 1)
-- VERIFIED: 19/21 tests pass; 2 pre-existing Mac-path failures unchanged
-- VERIFIED: 6 new TrustRemoteCodeTests all pass
+Additionally, `parse_json_stdout` gained defense-in-depth JSON extraction from noisy stdout (SSH login shells may dump env vars before payload).
+
+### Task 2: Live Pipeline Verification (Checkpoint)
+
+Live run from apollo via SSH to dionysus produced real metrics from all 3 models:
+
+| Model | twin_cosine | hit@1 | MRR | Time |
+|-------|------------|-------|-----|------|
+| BAAI/bge-small-en-v1.5 | 0.9758 | 0.9891 | 0.9932 | 7.3s |
+| BAAI/bge-base-en-v1.5 | 0.9680 | 0.9928 | 0.9935 | 29.4s |
+| intfloat/e5-base-v2 | 0.9766 | 0.9928 | 0.9945 | 28.5s |
+
+Run ID: `20260320T085629Z`, `dry_run: false`
+
+## Self-Check
+
+- [x] trust_remote_code flows end-to-end from config to SentenceTransformer constructor
+- [x] Makefile compare-backends runs live by default (no --dry-run)
+- [x] comparison-summary.json has non-null metrics from all 3 models
+- [x] Dry-run available via COMPARE_BACKENDS_ARGS
+- [x] 20/20 tests pass (2 pre-existing Mac-path failures excluded)
+- [x] SSH commands properly quoted for multi-line scripts
+- [x] CUDA torch wheel installed via correct index URL
+
+## Deviations
+
+1. **Bootstrap timeout 120s → 600s**: Plan specified 120s but first-run torch download requires more time.
+2. **VRAM threshold 512 → 1024 MiB**: Plan specified 512 but display-attached GPU has ~580 MiB idle usage.
+3. **Remote evaluator strategy**: Plan didn't anticipate the pdfmd import issue. Fixed by rsyncing the self-contained implementation directly.
+4. **SSH quoting bug**: Pre-existing in build_ssh_command, only visible during live execution. Fixed with shlex.join().
+5. **CUDA index URL**: Pre-existing omission in requirements file. CPU-only torch would have been installed without it.
+
+## Commits
+
+- `1707585` feat(07-02): add trust_remote_code support and enable live pipeline (EMBED-04, EMBED-01)
+- `f91b11f` docs(07-02): complete trust_remote_code and live pipeline plan (checkpoint reached)
+- `d62dcef` fix(07-02): fix SSH command quoting, CUDA index URL, and noisy stdout parsing
+- `c95a31c` fix(07-02): increase bootstrap timeout to 600s for torch CUDA wheel download
+- `aa4158d` fix(07-02): raise VRAM safety threshold to 1024 MiB for display-attached GPU
+- `244b020` fix(07-02): rsync self-contained evaluator for remote execution
