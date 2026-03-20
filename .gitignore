@@ -13,7 +13,8 @@ dist/
 .tmp/
 generated/
 !.gitkeep
-/*.pdf
+# PDFs tracked via Git LFS
+# /*.pdf
 _recovery_context.md
 _task_spec.md
 research_notes.md
