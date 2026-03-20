@@ -38,6 +38,13 @@ MODEL_SIZE_HINTS = {
     "xl": 4,
 }
 
+# Timeout tiers for SSH subprocess calls (seconds).
+# These values prevent indefinite hangs while allowing normal operations to complete.
+DEFAULT_TIMEOUT_PROBE = 60       # SSH probes: nvidia-smi, uname, python probe script
+DEFAULT_TIMEOUT_BOOTSTRAP = 120  # venv creation and pip install
+DEFAULT_TIMEOUT_STAGE = 120      # mkdir, rsync, tar, fetch staging operations
+DEFAULT_TIMEOUT_EVALUATION = 600 # model evaluation (per model, configurable via CLI)
+
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -120,6 +127,16 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=int,
         default=DEFAULT_BATCH_SIZE,
         help="Batch size used for sentence-transformers backends.",
+    )
+    parser.add_argument(
+        "--evaluation-timeout",
+        type=int,
+        default=DEFAULT_TIMEOUT_EVALUATION,
+        help=(
+            "Timeout in seconds for each remote model evaluation SSH command. "
+            "Increase for particularly slow models or large corpora. "
+            f"Default: {DEFAULT_TIMEOUT_EVALUATION}."
+        ),
     )
     parser.add_argument(
         "--dry-run",
@@ -506,6 +523,7 @@ def run_command(
     *,
     dry_run: bool = False,
     cwd: Path | None = None,
+    timeout: int | None = None,
 ) -> dict[str, Any]:
     runtime: dict[str, Any] = {
         "command": command,
@@ -521,29 +539,44 @@ def run_command(
     if dry_run:
         return runtime
     started = time.monotonic()
-    completed = subprocess.run(
-        command,
-        text=True,
-        capture_output=True,
-        check=False,
-        cwd=str(cwd) if cwd else None,
-    )
-    runtime.update(
-        {
-            "success": completed.returncode == 0,
-            "status": "success" if completed.returncode == 0 else "failure",
-            "exit_code": completed.returncode,
-            "stdout": completed.stdout,
-            "stderr": completed.stderr,
-            "wall_clock_seconds": round(time.monotonic() - started, 4),
-        }
-    )
+    try:
+        completed = subprocess.run(
+            command,
+            text=True,
+            capture_output=True,
+            check=False,
+            cwd=str(cwd) if cwd else None,
+            timeout=timeout,
+        )
+        runtime.update(
+            {
+                "success": completed.returncode == 0,
+                "status": "success" if completed.returncode == 0 else "failure",
+                "exit_code": completed.returncode,
+                "stdout": completed.stdout,
+                "stderr": completed.stderr,
+                "wall_clock_seconds": round(time.monotonic() - started, 4),
+            }
+        )
+    except subprocess.TimeoutExpired:
+        runtime.update(
+            {
+                "success": False,
+                "status": "timeout",
+                "exit_code": None,
+                "stdout": "",
+                "stderr": f"Command timed out after {timeout}s",
+                "wall_clock_seconds": round(time.monotonic() - started, 4),
+            }
+        )
     return runtime
 
 
 def parse_json_stdout(runtime: dict[str, Any], *, label: str) -> dict[str, Any]:
     if runtime["status"] == "dry_run":
         return {"status": "dry_run", "label": label, "payload": None}
+    if runtime["status"] == "timeout":
+        return {"status": "timeout", "label": label, "payload": None, "runtime": runtime}
     if not runtime["success"]:
         return {"status": "failure", "label": label, "payload": None, "runtime": runtime}
     stdout = str(runtime["stdout"] or "").strip()
@@ -757,12 +790,14 @@ def sync_json_to_remote(
     ssh_target: str,
     remote_path: str,
     dry_run: bool,
+    timeout: int | None = DEFAULT_TIMEOUT_STAGE,
 ) -> dict[str, Any]:
     local_path = local_temp_dir / Path(remote_path).name
     dump_json(local_path, payload)
     return run_command(
         build_rsync_to_remote_command(local_path, ssh_target, remote_path),
         dry_run=dry_run,
+        timeout=timeout,
     )
 
 
@@ -780,7 +815,10 @@ def extract_tarball(archive_path: Path, target_dir: Path, *, dry_run: bool) -> d
             "cwd": None,
         }
     target_dir.mkdir(parents=True, exist_ok=True)
-    return run_command(["tar", "-xzf", str(archive_path), "-C", str(target_dir)])
+    return run_command(
+        ["tar", "-xzf", str(archive_path), "-C", str(target_dir)],
+        timeout=DEFAULT_TIMEOUT_STAGE,
+    )
 
 
 def render_markdown(report: dict[str, Any]) -> str:
@@ -1032,7 +1070,11 @@ def main(argv: list[str] | None = None) -> int:
         }
 
         for stage_name in ("mkdir", "bundle", "benchmark", "evaluator", "requirements"):
-            runtime = run_command(stage_commands[stage_name], dry_run=args.dry_run)
+            runtime = run_command(
+                stage_commands[stage_name],
+                dry_run=args.dry_run,
+                timeout=DEFAULT_TIMEOUT_STAGE,
+            )
             backend_shared_runtime[f"stage_{stage_name}"] = runtime
             if not args.dry_run and not runtime["success"]:
                 backend_failure_stage = f"stage_{stage_name}"
@@ -1042,6 +1084,7 @@ def main(argv: list[str] | None = None) -> int:
             probe_runtime = run_command(
                 build_remote_probe_command(backend["ssh_target"], backend["python_bin"]),
                 dry_run=args.dry_run,
+                timeout=DEFAULT_TIMEOUT_PROBE,
             )
             backend_shared_runtime["pre_probe"] = probe_runtime
             probe_result = parse_json_stdout(probe_runtime, label="pre_probe")
@@ -1053,6 +1096,7 @@ def main(argv: list[str] | None = None) -> int:
             bootstrap_runtime = run_command(
                 build_remote_bootstrap_command(backend, remote_backend_root=remote_backend_root),
                 dry_run=args.dry_run,
+                timeout=DEFAULT_TIMEOUT_BOOTSTRAP,
             )
             backend_shared_runtime["bootstrap"] = bootstrap_runtime
             bootstrap_result = parse_json_stdout(bootstrap_runtime, label="bootstrap")
@@ -1067,6 +1111,7 @@ def main(argv: list[str] | None = None) -> int:
                     f"{remote_backend_root}/{backend['venv_dir']}/bin/python",
                 ),
                 dry_run=args.dry_run,
+                timeout=DEFAULT_TIMEOUT_PROBE,
             )
             backend_shared_runtime["post_probe"] = post_probe_runtime
             post_probe_result = parse_json_stdout(post_probe_runtime, label="post_probe")
@@ -1129,6 +1174,7 @@ def main(argv: list[str] | None = None) -> int:
                 mkdir_runtime = run_command(
                     build_remote_mkdir_command(backend["ssh_target"], model_paths["remote_model_dir"]),
                     dry_run=args.dry_run,
+                    timeout=DEFAULT_TIMEOUT_STAGE,
                 )
                 backend_shared_runtime[f"model_{model_slug}_mkdir"] = mkdir_runtime
                 sync_env_runtime = sync_json_to_remote(
@@ -1140,7 +1186,11 @@ def main(argv: list[str] | None = None) -> int:
                 )
                 backend_shared_runtime[f"model_{model_slug}_env_sync"] = sync_env_runtime
 
-                evaluation_runtime = run_command(commands["evaluate"], dry_run=args.dry_run)
+                evaluation_runtime = run_command(
+                    commands["evaluate"],
+                    dry_run=args.dry_run,
+                    timeout=args.evaluation_timeout,
+                )
                 dump_json(model_local_dir / "runtime.json", evaluation_runtime)
 
                 manifest_payload = ensure_manifest_payload(
@@ -1180,10 +1230,10 @@ def main(argv: list[str] | None = None) -> int:
                 )
 
                 if not args.dry_run and evaluation_runtime["success"]:
-                    tar_runtime = run_command(commands["tar"])
+                    tar_runtime = run_command(commands["tar"], timeout=DEFAULT_TIMEOUT_STAGE)
                     backend_shared_runtime[f"model_{model_slug}_tar"] = tar_runtime
                     if tar_runtime["success"]:
-                        fetch_runtime = run_command(commands["fetch"])
+                        fetch_runtime = run_command(commands["fetch"], timeout=DEFAULT_TIMEOUT_STAGE)
                         backend_shared_runtime[f"model_{model_slug}_fetch"] = fetch_runtime
                         if fetch_runtime["success"]:
                             extract_runtime = extract_tarball(
@@ -1298,7 +1348,7 @@ def main(argv: list[str] | None = None) -> int:
                 for result in report["results"]
                 if result["backend_id"] == backend["id"]
             ):
-                cleanup_runtime = run_command(commands["cleanup"])
+                cleanup_runtime = run_command(commands["cleanup"], timeout=DEFAULT_TIMEOUT_STAGE)
                 backend_shared_runtime["cleanup"] = cleanup_runtime
 
     report["selection"] = choose_winner(

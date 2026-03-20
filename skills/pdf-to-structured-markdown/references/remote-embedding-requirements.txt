@@ -1,4 +1,4 @@
-sentence-transformers==3.0.1
-torch==2.4.1
-transformers==4.44.2
-numpy==1.26.4
+sentence-transformers==5.2.0
+torch==2.9.1
+transformers==4.51.3
+numpy>=1.26.4
