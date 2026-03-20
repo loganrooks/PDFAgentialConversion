@@ -41,7 +41,7 @@ MODEL_SIZE_HINTS = {
 # Timeout tiers for SSH subprocess calls (seconds).
 # These values prevent indefinite hangs while allowing normal operations to complete.
 DEFAULT_TIMEOUT_PROBE = 60       # SSH probes: nvidia-smi, uname, python probe script
-DEFAULT_TIMEOUT_BOOTSTRAP = 120  # venv creation and pip install
+DEFAULT_TIMEOUT_BOOTSTRAP = 600  # venv creation and pip install (torch CUDA wheel is ~2GB)
 DEFAULT_TIMEOUT_STAGE = 120      # mkdir, rsync, tar, fetch staging operations
 DEFAULT_TIMEOUT_EVALUATION = 600 # model evaluation (per model, configurable via CLI)
 
