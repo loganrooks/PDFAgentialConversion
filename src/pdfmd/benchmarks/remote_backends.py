@@ -47,7 +47,7 @@ DEFAULT_TIMEOUT_EVALUATION = 600 # model evaluation (per model, configurable via
 
 # VRAM safety threshold (MiB): if more than this much VRAM is in use before loading
 # a model, something is wrong (leaked from prior model or another process).
-VRAM_SAFETY_THRESHOLD_MIB = 512
+VRAM_SAFETY_THRESHOLD_MIB = 1024  # idle display driver uses ~580 MiB on GTX 1080 Ti
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
