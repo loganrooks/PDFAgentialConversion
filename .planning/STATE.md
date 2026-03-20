@@ -1,13 +1,18 @@
 # STATE
 
+## Current Position
+
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-19 — Milestone v1.1 started
+
 ## Current Focus
 
-- Milestone `v1.0` is complete and archived.
-- There is no active roadmap phase; the next step is defining the next milestone.
-- The canonical `why-ethics` gate remains green, enforced, and stable across repeated runs.
-- The challenge corpus remains the hard non-regression baseline.
-- `Specters of Marx` remains the clean negative control.
-- Remote backend comparisons remain report-only and experiment-only.
+- Milestone `v1.1` is active: Remote Evaluation & Extraction Exploration.
+- Turning the `dionysus` GPU backend from dry-run infrastructure into live measured comparisons.
+- Exploring GLM-OCR as a potential extraction model for scholarly PDFs.
+- Mac orchestrates via SSH; `dionysus` is the GPU compute backend.
 
 ## Decisions
 
@@ -20,17 +25,13 @@
 - Require repeated successful `why-ethics` gate runs before declaring the canonical holdout restored or promoting future baselines.
 - Keep `Specters of Marx` as the clean negative control during cross-book closure work.
 - Keep remote embedding/backend experiments report-only; they do not affect the canonical local gate.
-- [Phase 05]: Use a tracked cross-book exact-case packet instead of live-count assertions for the remaining repair surface. — This keeps the characterization slice stable while allowing later repair plans to reduce issue counts without rewriting unrelated tests.
-- [Phase 05]: Expand only known-good source-specific regressions in Plan 05-01. — The first cross-book slice should protect clean surfaces without encoding currently broken outputs as expected truth.
-- [Phase 05]: Prefer explicit or inline heading evidence over lowercase continuation when slicing same-page boundaries. — This prevents the previous section from incorrectly inheriting a new section's heading page.
-- [Phase 05]: Normalize the malformed symbolic Outside/Inside title narrowly instead of broadening title normalization. — The repair is structural and book-local, not a general title-casing policy change.
-- [Phase 05]: Promote the challenge corpus as a hard non-regression gate without rebasing the canonical `why-ethics` holdout. — Cross-book protection is now enforceable, but it does not supersede the local holdout.
-- [Phase 06]: Promote the repaired chapter-5 manual packet from report-only evidence into the canonical gate once strict regressions are green. — The final `why-comment` repair is now part of the real acceptance contract.
+- [v1.1]: Mac orchestrates, dionysus is always the remote GPU compute backend for embedding and model evaluation.
+- [v1.1]: SSH-from-Mac orchestration model preserved; no cross-platform path changes needed.
 
 ## Known Active Failures
 
 - none in the tracked project gates
-- external note: `make map` may still be blocked by Codex skill-loader YAML errors outside this repo; `.planning/codebase/` was refreshed manually as a fallback when needed
+- external note: `make map` may still be blocked by Codex skill-loader YAML errors outside this repo
 
 ## Next Verification Gates
 
@@ -44,4 +45,4 @@
 
 ## Next Command
 
-- `$gsdr-new-milestone`
+- Define requirements for v1.1

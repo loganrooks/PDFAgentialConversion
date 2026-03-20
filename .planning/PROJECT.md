@@ -29,11 +29,17 @@ Make difficult PDFs operationally legible and reproducible without sacrificing s
 - Verification tiers are explicit and operator-friendly.
 - Manifest/schema drift is guarded by explicit tests.
 
-## Next Milestone Goals
+## Current Milestone: v1.1 Remote Evaluation & Extraction Exploration
 
-- Decide whether the next milestone should focus on extractor-quality expansion, remote backend evaluation, or workflow/tooling cleanup.
-- Turn the remote backend path from dry-run infrastructure into measured comparison runs on `dionysus`.
-- Resolve the external `make map` blockage and the milestone-helper completion drift so milestone tooling stays aligned with repo state.
+**Goal:** Turn the remote backend path into live measured comparisons on `dionysus` and explore vision-language extraction models (GLM-OCR) as a potential upgrade to the scholarly PDF pipeline.
+
+**Target features:**
+- Live embedding backend comparisons (remove dry-run, run actual measured runs on dionysus GPU)
+- Expanded embedding model roster beyond BGE-small/base and E5-base
+- Quantify Apple NL vs open-source embedding gap with real retrieval metrics
+- Pick a best non-Apple backend for dionysus-hosted RAG
+- GLM-OCR exploration — evaluate what zai-org/GLM-OCR can do for scholarly PDF extraction on GPU
+- Comparison reporting that informs backend selection decisions
 
 ## Constraints
 
@@ -42,4 +48,4 @@ Make difficult PDFs operationally legible and reproducible without sacrificing s
 - Existing CLI contracts under `skills/pdf-to-structured-markdown/scripts/` must remain backward-compatible.
 
 ---
-*Last updated: 2026-03-16 after v1.0 milestone*
+*Last updated: 2026-03-19 after v1.1 milestone start*
