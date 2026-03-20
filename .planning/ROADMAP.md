@@ -68,13 +68,16 @@ Plans:
 - [ ] 09-02: TBD
 
 #### Phase 10: Inference Optimization
-**Goal**: The selected embedding model runs at optimal speed on the GTX 1080 Ti while maintaining retrieval quality within a defined tolerance
-**Depends on**: Phase 08 (model selection must be complete first)
-**Requirements**: OPT-01, OPT-02
+**Goal**: Apply optimization techniques to the top-N models from Phase 08 and make a final selection based on the full picture: quality × speed × optimization headroom
+**Depends on**: Phase 08 (quality and baseline speed rankings must exist first)
+**Requirements**: OPT-01, OPT-02, OPT-03
+**Key insight**: Optimization response varies per model — a slightly lower-quality model may become dramatically faster under quantization while a higher-quality model gains little. The final selection requires comparing optimized versions of all competitive models, not just one. Additionally, speed improvements have diminishing returns — there is a threshold beyond which further gains are negligible (non-linear ROI).
 **Success Criteria** (what must be TRUE):
-  1. At least one optimization technique (quantization, ONNX runtime, batch tuning, or other) produces a measurable speedup over the Phase 08 baseline
-  2. Optimized model's retrieval quality (twin cosine, hit@1, MRR) remains within a defined tolerance of the unoptimized baseline (e.g., <1% degradation)
-  3. Optimization is reproducible and documented — operator can rebuild the optimized model from instructions
+  1. Top-N models from Phase 08 (those within a defined quality tolerance of the best) are each optimized using the same techniques (quantization, ONNX runtime, batch tuning, or other applicable methods)
+  2. Each optimized model has measured quality metrics (twin cosine, hit@1, MRR) and inference time, comparable to its Phase 08 unoptimized baseline
+  3. A Pareto frontier visualization or table shows quality vs speed for all candidates (unoptimized and optimized), making the trade-offs explicit
+  4. Final model selection accounts for optimization headroom — not just raw Phase 08 quality ranking
+  5. Selected model's optimization is reproducible and documented
 **Plans**: TBD
 
 Plans:
