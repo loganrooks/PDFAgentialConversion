@@ -985,6 +985,10 @@ def plan_remote_paths(backend: dict[str, Any], run_id: str, model_slug: str) -> 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     evaluator_script = SCRIPT_DIR / "evaluate_embedding_space.py"
+    # Remote evaluator: use the self-contained implementation directly
+    # (the wrapper script relies on sys.path to find pdfmd, which doesn't
+    # exist on the remote venv)
+    remote_evaluator_script = Path(__file__).parent / "embedding_space.py"
     selected_ids = (
         {item.strip() for item in args.backend_ids.split(",") if item.strip()}
         if args.backend_ids
@@ -1156,7 +1160,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"{remote_backend_root}/benchmark.json",
             ),
             "evaluator": build_rsync_to_remote_command(
-                evaluator_script,
+                remote_evaluator_script,
                 backend["ssh_target"],
                 f"{remote_backend_root}/evaluate_embedding_space.py",
             ),
