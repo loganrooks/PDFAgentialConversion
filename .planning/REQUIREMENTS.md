@@ -19,7 +19,7 @@ Requirements for Remote Evaluation & Extraction Exploration milestone. Each maps
 ### Embedding Evaluation (EMBED)
 
 - [ ] **EMBED-01**: Operator can run embedding comparison without `--dry-run` and get measured metrics from dionysus GPU
-  - *Motivation:* `user: core milestone goal — turn dry-run infrastructure into live measured comparisons`
+  - *Motivation:* `user: core milestone goal -- turn dry-run infrastructure into live measured comparisons`
 - [ ] **EMBED-02**: Remote backends config supports per-model batch size to prevent OOM on larger models
   - *Motivation:* `research: BGE-M3 at batch 32 will OOM; per-model sizing is required`
 - [ ] **EMBED-03**: Model roster expanded to 8 models: existing 3 + BGE-large, E5-large, GTE-large, BGE-M3, nomic-embed
@@ -76,26 +76,26 @@ Requirements for Remote Evaluation & Extraction Exploration milestone. Each maps
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | TBD | Pending |
-| INFRA-02 | TBD | Pending |
-| INFRA-03 | TBD | Pending |
-| EMBED-01 | TBD | Pending |
-| EMBED-02 | TBD | Pending |
-| EMBED-03 | TBD | Pending |
-| EMBED-04 | TBD | Pending |
-| EMBED-05 | TBD | Pending |
-| EMBED-06 | TBD | Pending |
-| OCR-01 | TBD | Pending |
-| OCR-02 | TBD | Pending |
-| OCR-03 | TBD | Pending |
-| OCR-04 | TBD | Pending |
-| RPT-01 | TBD | Pending |
+| INFRA-01 | Phase 07 | Pending |
+| INFRA-02 | Phase 07 | Pending |
+| INFRA-03 | Phase 07 | Pending |
+| EMBED-01 | Phase 07 | Pending |
+| EMBED-02 | Phase 08 | Pending |
+| EMBED-03 | Phase 08 | Pending |
+| EMBED-04 | Phase 07 | Pending |
+| EMBED-05 | Phase 08 | Pending |
+| EMBED-06 | Phase 08 | Pending |
+| OCR-01 | Phase 09 | Pending |
+| OCR-02 | Phase 09 | Pending |
+| OCR-03 | Phase 09 | Pending |
+| OCR-04 | Phase 09 | Pending |
+| RPT-01 | Phase 08 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 14 total
-- Mapped to phases: 0
-- Unmapped: 14
+- Mapped to phases: 14
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-19*
-*Last updated: 2026-03-19 after initial definition*
+*Last updated: 2026-03-20 after roadmap creation (phases 07-09 mapped)*

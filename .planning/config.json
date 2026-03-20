@@ -14,7 +14,10 @@
     "notes": "Local-first milestone. Stable local commands come before hosted CI or deployment automation."
   },
   "milestone": {
-    "id": "01",
-    "name": "Foundation, Visibility, and Gate Recovery"
+    "id": "02",
+    "name": "Remote Evaluation & Extraction Exploration"
+  },
+  "workflow": {
+    "research": true
   }
 }

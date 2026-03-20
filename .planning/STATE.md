@@ -1,48 +1,62 @@
-# STATE
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-03-19)
+
+**Core value:** Make difficult PDFs operationally legible and reproducible without sacrificing structural rigor, retrieval quality, or auditability.
+**Current focus:** Phase 07 - Infrastructure Alignment and Live Pipeline
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-19 — Milestone v1.1 started
+Phase: 07 of 09 (Infrastructure Alignment and Live Pipeline)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-03-20 -- Roadmap created for v1.1 milestone (phases 07-09)
 
-## Current Focus
+Progress: [░░░░░░░░░░] 0%
 
-- Milestone `v1.1` is active: Remote Evaluation & Extraction Exploration.
-- Turning the `dionysus` GPU backend from dry-run infrastructure into live measured comparisons.
-- Exploring GLM-OCR as a potential extraction model for scholarly PDFs.
-- Mac orchestrates via SSH; `dionysus` is the GPU compute backend.
+## Performance Metrics
 
-## Decisions
+**Velocity:**
+- Total plans completed: 0 (v1.1); 22 (v1.0)
+- Average duration: --
+- Total execution time: --
 
-- Use GSD as the only planning system.
-- Treat `generated/` as runtime output.
-- Keep the local M4 gate canonical.
-- Keep the remote GPU host experiment-only.
-- Prefer local-first automation before hosted CI.
-- Use `make gate GATE_ARGS='...'` for explicit runtime verification overrides instead of editing Make targets by hand.
-- Require repeated successful `why-ethics` gate runs before declaring the canonical holdout restored or promoting future baselines.
-- Keep `Specters of Marx` as the clean negative control during cross-book closure work.
-- Keep remote embedding/backend experiments report-only; they do not affect the canonical local gate.
-- [v1.1]: Mac orchestrates, dionysus is always the remote GPU compute backend for embedding and model evaluation.
-- [v1.1]: SSH-from-Mac orchestration model preserved; no cross-platform path changes needed.
+**By Phase:**
 
-## Known Active Failures
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
 
-- none in the tracked project gates
-- external note: `make map` may still be blocked by Codex skill-loader YAML errors outside this repo
+**Recent Trend:**
+- Last 5 plans: -- (v1.1 not started)
+- Trend: --
 
-## Next Verification Gates
+*Updated after each plan completion*
 
-- `make test-fast`
-- `make test`
-- `make status`
-- `make doctor`
-- `make gate`
-- `make smoke`
-- `make compare-backends`
+## Accumulated Context
 
-## Next Command
+### Decisions
 
-- Define requirements for v1.1
+- [v1.0]: Use GSD as the only planning system.
+- [v1.0]: Local M4 Apple embedding remains the canonical gate.
+- [v1.0]: Remote GPU host is experiment-only, report-only.
+- [v1.1]: Mac orchestrates via SSH; dionysus is always the remote GPU compute backend.
+- [v1.1]: Embedding and OCR are sequential workstreams (VRAM constraint on 11GB GPU).
+- [v1.1]: GLM-OCR gets its own isolated venv (transformers version conflict is a hard constraint).
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- dionysus CUDA documentation in CLAUDE.md says 11.8 but system has 12.6 driver -- update after Phase 07
+- GLM-OCR fp16 inference speed on GTX 1080 Ti is empirically unvalidated (only T4 data exists)
+
+## Session Continuity
+
+Last session: 2026-03-20
+Stopped at: Roadmap created for v1.1 milestone
+Resume file: None
