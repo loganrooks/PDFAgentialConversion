@@ -270,7 +270,10 @@ def load_remote_backends(path: Path, selected_ids: set[str] | None = None) -> li
 
 
 def build_ssh_command(ssh_target: str, remote_args: list[str]) -> list[str]:
-    return ["ssh", ssh_target, *remote_args]
+    # SSH concatenates remote args with spaces before passing to the remote
+    # shell. Join into a single properly-quoted string so multi-line scripts
+    # (e.g. bash -lc 'set -euo pipefail\n...') are preserved as one argument.
+    return ["ssh", ssh_target, shlex.join(remote_args)]
 
 
 def build_rsync_to_remote_command(
@@ -659,7 +662,28 @@ def parse_json_stdout(runtime: dict[str, Any], *, label: str) -> dict[str, Any]:
     try:
         payload = json.loads(stdout)
     except json.JSONDecodeError:
-        return {"status": "failure", "label": label, "payload": None, "runtime": runtime}
+        # SSH login shells may dump env vars before JSON output.
+        # Try to extract the last JSON object from mixed output.
+        last_brace = stdout.rfind("}")
+        if last_brace == -1:
+            return {"status": "failure", "label": label, "payload": None, "runtime": runtime}
+        # Scan backward to find the matching opening brace
+        depth = 0
+        start = -1
+        for i in range(last_brace, -1, -1):
+            if stdout[i] == "}":
+                depth += 1
+            elif stdout[i] == "{":
+                depth -= 1
+            if depth == 0:
+                start = i
+                break
+        if start == -1:
+            return {"status": "failure", "label": label, "payload": None, "runtime": runtime}
+        try:
+            payload = json.loads(stdout[start : last_brace + 1])
+        except json.JSONDecodeError:
+            return {"status": "failure", "label": label, "payload": None, "runtime": runtime}
     return {"status": "success", "label": label, "payload": payload, "runtime": runtime}
 
 

@@ -457,9 +457,11 @@ class VramProbeTests(unittest.TestCase):
         cmd = compare_embedding_backends.build_vram_probe_command("rookslog@dionysus")
         self.assertEqual(cmd[0], "ssh")
         self.assertEqual(cmd[1], "rookslog@dionysus")
-        self.assertIn("nvidia-smi", cmd)
-        self.assertTrue(any("memory.used" in arg for arg in cmd))
-        self.assertTrue(any("csv" in arg for arg in cmd))
+        # Remote args are joined into a single string for SSH
+        remote_cmd = cmd[2]
+        self.assertIn("nvidia-smi", remote_cmd)
+        self.assertIn("memory.used", remote_cmd)
+        self.assertIn("csv", remote_cmd)
 
 
 class RunCommandTimeoutTests(unittest.TestCase):
@@ -497,6 +499,23 @@ class RunCommandTimeoutTests(unittest.TestCase):
         self.assertEqual(result["status"], "timeout")
         self.assertIsNone(result["payload"])
         self.assertEqual(result["label"], "pre_probe")
+
+
+    def test_parse_json_stdout_extracts_json_from_noisy_output(self) -> None:
+        """parse_json_stdout extracts JSON when SSH login shell dumps env vars before payload."""
+        noisy_runtime = {
+            "status": "success",
+            "success": True,
+            "exit_code": 0,
+            "stdout": "BASH=/usr/bin/bash\nBASHOPTS=flags\nHOME=/home/user\n"
+                       '{"probed_at": "2026-03-20T00:00:00", "modules": {"torch": {"installed": true}}}',
+            "stderr": "",
+            "wall_clock_seconds": 0.5,
+        }
+        result = compare_embedding_backends.parse_json_stdout(noisy_runtime, label="pre_probe")
+        self.assertEqual(result["status"], "success")
+        self.assertIsNotNone(result["payload"])
+        self.assertEqual(result["payload"]["modules"]["torch"]["installed"], True)
 
 
 class TrustRemoteCodeTests(unittest.TestCase):
